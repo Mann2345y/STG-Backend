@@ -1,0 +1,71 @@
+.wrapper {
+  height: 700px;
+  width: 52%;
+  border: 2px solid rgba(220, 220, 220, 0.5);
+  padding: 30px;
+}
+.wrapper h1 {
+  font-size: 3rem;
+  font-family: "Roboto Slab", serif;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+.wrapper p {
+  font-family: "Roboto Slab", serif;
+  font-weight: 300;
+}
+.brandName {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  color: grey;
+}
+.price {
+  font-size: 2em;
+  margin: 20px 0;
+}
+.description {
+  width: 50%;
+  margin: 20px 0;
+}
+.qtyBlock {
+  display: flex;
+  align-items: center;
+  margin-top: 25px;
+}
+.qtyWrapper {
+  height: 50px;
+  width: 150px;
+  display: flex;
+  border: 1px solid rgb(220, 220, 220);
+  margin-left: 25px;
+}
+.qty {
+  height: 100%;
+  width: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.qty p {
+  font-size: 1.3em;
+}
+.qtyButtonsWrapper {
+  height: 100%;
+  width: 40px;
+}
+.addButton,
+.removeButton {
+  border: 1px solid rgb(200, 200, 200);
+  height: 24px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.buttonsWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}

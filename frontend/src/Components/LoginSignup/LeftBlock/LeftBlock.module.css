@@ -1,0 +1,39 @@
+.wrapper {
+  height: 100%;
+  width: 35%;
+  background: url("./bg1.jpg");
+  background-repeat: no-repeat;
+  background-position: bottom bottom;
+  background-size: cover;
+}
+
+.innerWrapper {
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+}
+.button {
+  height: 40px;
+  width: 100px;
+  background: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 15px 0;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  transition: all 0.2s ease-in;
+}
+.button:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+.active {
+  background: rgba(0, 0, 0, 0.4);
+}

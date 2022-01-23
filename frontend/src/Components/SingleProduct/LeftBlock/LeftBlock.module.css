@@ -1,0 +1,11 @@
+.wrapper {
+  height: fit-content;
+  width: 48%;
+}
+.image {
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  height: 700px;
+  width: 100%;
+}
