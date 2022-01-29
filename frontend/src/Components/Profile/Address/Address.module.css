@@ -19,3 +19,7 @@
   overflow-y: auto;
   padding-left: 10px;
 }
+.addressWrapper {
+  height: 100%;
+  width: 100%;
+}

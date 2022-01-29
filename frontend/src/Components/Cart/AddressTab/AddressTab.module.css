@@ -1,0 +1,33 @@
+.wrapper {
+  height: 100%;
+  width: 100%;
+}
+.header {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.tabsWrapper {
+  height: 90%;
+  width: 100%;
+  overflow-y: auto;
+  padding-left: 10px;
+}
+.addressWrapper {
+  height: 80%;
+  width: 100%;
+  margin-top: 25px;
+}
+.notFoundWrapper {
+  height: 500px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.addressFormWrapper {
+  width: 800px;
+}

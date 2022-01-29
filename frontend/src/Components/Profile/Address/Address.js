@@ -5,12 +5,11 @@ import Loader from "../../../Reusables/Loader";
 import Message from "../../../Reusables/Message";
 import AddressForm from "./AddressForm";
 import Buttons from "../../../Reusables/Buttons";
-// import Buttons from "../../../Reusables/Buttons";
 
 const Address = () => {
   const { loading, error, addresses } = useSelector((state) => state.addresses);
   return (
-    <>
+    <div className={styles.wrapper}>
       <div className={styles.wrapper}>
         <h2>Addresses</h2>
         {loading ? (
@@ -18,14 +17,14 @@ const Address = () => {
         ) : error ? (
           <Message>{error}</Message>
         ) : addresses.length > 0 ? (
-          <>
+          <div className={styles.addressWrapper}>
             <AddressForm />
             <div className={styles.tabsWrapper}>
               {addresses.map((item, index) => {
                 return <AddressForm item={item} key={index} />;
               })}
             </div>
-          </>
+          </div>
         ) : (
           <div className={styles.notFoundWrapper}>
             <h3>No Address Found</h3>
@@ -33,7 +32,7 @@ const Address = () => {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 };
 

@@ -2,14 +2,15 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { BsFillBookmarkPlusFill as Add } from "react-icons/bs";
 import { IoTrashBinOutline as Trash } from "react-icons/io5";
-import { AiOutlineEdit as Edit } from "react-icons/ai";
+import { AiOutlineEdit as Edit, AiOutlineCheck as Check } from "react-icons/ai";
 import InputBox from "../../../Reusables/InputBox/InputBox";
 import Buttons from "../../../Reusables/Buttons";
 import {
   addAddress,
   removeAddress,
 } from "../../../Redux/actions/addressActions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addAddressInCart } from "../../../Redux/actions/cartActions";
 
 const Wrapper = styled.div`
   height: ${(props) =>
@@ -51,8 +52,8 @@ const RightBlock = styled.div`
   display: flex;
 `;
 const ButtonWrapper = styled.div`
-  height: 30px;
-  width: 30px;
+  height: 40px;
+  width: 60px;
   border: 1px solid #d3d3d3;
   border-radius: 5px;
   display: flex;
@@ -64,6 +65,7 @@ const ButtonWrapper = styled.div`
   &:hover {
     background: #ff4433;
   }
+  background: ${(props) => (props.selected ? "#ff4433" : "white")};
 `;
 const FormWrapper = styled.div`
   height: fit-content;
@@ -91,11 +93,13 @@ const ButtonsWrapper = styled.div`
 const AddressForm = ({ item, short }) => {
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("loggedUser"));
+  const { address: addressId } = useSelector((state) => state.cart);
   const [toggle, setToggle] = useState(false);
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [pincode, setPincode] = useState("");
+  const [selected, setSelected] = useState(false);
   useEffect(() => {
     if (item) {
       setAddress(item.address);
@@ -103,7 +107,14 @@ const AddressForm = ({ item, short }) => {
       setState(item.state);
       setPincode(item.pincode);
     }
-  }, [item]);
+    if (item) {
+      if (addressId === item._id) {
+        setSelected(true);
+      } else {
+        setSelected(false);
+      }
+    }
+  }, [item, addressId]);
   return (
     <Wrapper item={item} toggle={toggle}>
       <Header>
@@ -122,13 +133,21 @@ const AddressForm = ({ item, short }) => {
               <h5 style={{ marginTop: "5px" }}>Pin Code - {item.pincode}</h5>
             </div>
             <RightBlock>
+              <ButtonWrapper
+                selected={selected}
+                onClick={() => {
+                  dispatch(addAddressInCart(item._id));
+                }}
+              >
+                <Check size={21} />
+              </ButtonWrapper>
               <ButtonWrapper onClick={() => setToggle(!toggle)}>
-                <Edit />
+                <Edit size={21} />
               </ButtonWrapper>
               <ButtonWrapper
                 onClick={() => dispatch(removeAddress(user.id, item._id))}
               >
-                <Trash />
+                <Trash size={21} />
               </ButtonWrapper>
             </RightBlock>
           </AddressTabWrapper>

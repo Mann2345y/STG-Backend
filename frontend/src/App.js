@@ -12,6 +12,7 @@ import Cart from "./Pages/Cart";
 import Profile from "./Pages/Profile";
 import { getCartItems } from "./Redux/actions/cartActions";
 import { getAddresses } from "./Redux/actions/addressActions";
+import { getOrderHistory } from "./Redux/actions/orderActions";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ function App() {
     if (user) {
       dispatch(getCartItems(user.id));
       dispatch(getAddresses(user.id));
+      dispatch(getOrderHistory(user.id));
     }
   }, [dispatch, user]);
   return (

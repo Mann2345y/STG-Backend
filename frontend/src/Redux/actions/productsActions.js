@@ -28,7 +28,6 @@ export const getAllProducts = () => async (dispatch) => {
     });
   }
 };
-
 export const getSingleProduct = (id) => async (dispatch) => {
   try {
     dispatch({

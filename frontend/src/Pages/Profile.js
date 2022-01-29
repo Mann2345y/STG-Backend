@@ -6,6 +6,9 @@ import NavBar from "../Reusables/NavBar/NavBar";
 import Footer from "../Reusables/Footer/Footer";
 import LeftBlock from "../Components/Profile/LeftBlock/LeftBlock";
 import RightBlock from "../Components/Profile/RightBlock/RightBlock";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getOrderHistory } from "../Redux/actions/orderActions";
 
 const Wrapper = styled.div`
   height: 650px;
@@ -17,6 +20,12 @@ const Wrapper = styled.div`
 `;
 
 const Profile = () => {
+  const dispatch = useDispatch();
+  const user = JSON.parse(localStorage.getItem("loggedUser"));
+  useEffect(() => {
+    dispatch(getOrderHistory(user.id));
+  }, []);
+
   const [profileEditActive, setProfileEditActive] = useState(true);
   const [addressEditActive, setAddressEditActive] = useState(false);
   const [orderHistoryActive, setOrderHistoryActive] = useState(false);

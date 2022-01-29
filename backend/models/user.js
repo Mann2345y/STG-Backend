@@ -1,5 +1,13 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
+
+const addressSchema = mongoose.Schema({
+  address: { type: String, required: true },
+  city: { type: String, required: true },
+  state: { type: String, required: true },
+  pincode: { type: Number, required: true },
+});
+
 const userSchema = mongoose.Schema(
   {
     name: {
@@ -43,14 +51,7 @@ const userSchema = mongoose.Schema(
         },
       },
     ],
-    addresses: [
-      {
-        address: { type: String, required: true },
-        city: { type: String, required: true },
-        state: { type: String, required: true },
-        pincode: { type: Number, required: true },
-      },
-    ],
+    addresses: [addressSchema],
     wishlist: [
       {
         product: {
@@ -77,5 +78,6 @@ userSchema.pre("save", async function (next) {
 });
 
 const User = mongoose.model("User", userSchema);
+export const Address = mongoose.model("Address", addressSchema);
 
 export default User;

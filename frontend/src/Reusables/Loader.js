@@ -4,6 +4,7 @@ import Spinner from "react-bootstrap/Spinner";
 const Loader = () => {
   return (
     <Spinner
+      className="spinner-border"
       animation="border"
       role="status"
       style={{
@@ -12,9 +13,7 @@ const Loader = () => {
         margin: "auto",
         display: "block",
       }}
-    >
-      <span className="sr-only">Loading...</span>
-    </Spinner>
+    ></Spinner>
   );
 };
 

@@ -11,6 +11,7 @@ import { FaOpencart } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addCartItem } from "../../../Redux/actions/cartActions";
+import { addWishlist } from "../../../Redux/actions/wishlistActions";
 
 const RightBlock = () => {
   const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
@@ -57,7 +58,11 @@ const RightBlock = () => {
           <AiOutlineShoppingCart size={28} />
           <h3 style={{ marginLeft: "10px" }}>Add To Cart</h3>
         </Buttons>
-        <Buttons>
+        <Buttons
+          clickHandler={() => {
+            dispatch(addWishlist(loggedUser.id, product._id));
+          }}
+        >
           <AiOutlineHeart size={28} />
           <h3 style={{ marginLeft: "10px" }}>Wish List</h3>
         </Buttons>

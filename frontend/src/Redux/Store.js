@@ -8,6 +8,8 @@ import {
 import { loggedUserReducer } from "./reducers/userReducers";
 import { cartReducer } from "../Redux/reducers/cartReducers";
 import { addressReducer } from "../Redux/reducers/addressReducer";
+import { orderHistoryReducer } from "./reducers/orderReducer";
+import { wishlistReducer } from "./reducers/wishlistReducer";
 
 const reducer = combineReducers({
   allProducts: allProductsReducer,
@@ -15,6 +17,8 @@ const reducer = combineReducers({
   loggedUser: loggedUserReducer,
   cart: cartReducer,
   addresses: addressReducer,
+  orderHistory: orderHistoryReducer,
+  wishlist: wishlistReducer,
 });
 
 const loggedUserFromStorage = localStorage.getItem("loggedUser")

@@ -94,6 +94,18 @@ const getCartItems = asyncHandler(async (req, res) => {
     throw new Error("Invalid user id");
   }
 });
+const emptyCart = asyncHandler(async (req, res) => {
+  const { id } = req.body;
+  const user = await User.findById(id);
+  if (user) {
+    user.cartItems = [];
+    const updatedUser = await user.save();
+    res.status(200).json(updatedUser.cartItems);
+  } else {
+    res.status(401);
+    throw new Error("Invalid user id");
+  }
+});
 const addCartItems = asyncHandler(async (req, res) => {
   const { userId, productId, quantity } = req.body;
   const user = await User.findById(userId);
@@ -229,6 +241,18 @@ const getWishlist = asyncHandler(async (req, res) => {
     throw new Error("Invalid user id");
   }
 });
+const emptyWishlist = asyncHandler(async (req, res) => {
+  const { id } = req.body;
+  const user = await User.findById(id);
+  if (user) {
+    user.wishlist = [];
+    const updatedUser = await user.save();
+    res.status(200).json(updatedUser.wishlist);
+  } else {
+    res.status(401);
+    throw new Error("Invalid user id");
+  }
+});
 const addWishlist = asyncHandler(async (req, res) => {
   const { userId, productId } = req.body;
   const user = await User.findById(userId);
@@ -286,12 +310,14 @@ export {
   updateUser,
   authUser,
   getCartItems,
+  emptyCart,
   addCartItems,
   removeCartItems,
   getAddresses,
   addAddress,
   removeAddress,
   getWishlist,
+  emptyWishlist,
   addWishlist,
   removeWishlist,
 };
