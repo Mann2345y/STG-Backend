@@ -9,3 +9,28 @@
   height: 700px;
   width: 100%;
 }
+
+.iconActive {
+  pointer-events: none;
+}
+
+.active {
+  animation-name: wishlist-ani;
+  animation-duration: 500ms;
+  color: #ff4433;
+}
+
+@keyframes wishlist-ani {
+  0% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(0.5);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

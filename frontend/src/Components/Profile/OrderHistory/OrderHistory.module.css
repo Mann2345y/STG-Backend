@@ -4,3 +4,20 @@
   padding: 25px;
   overflow-y: auto;
 }
+.Secondwrapper {
+  height: 90%;
+  width: 100%;
+  padding: 25px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonsWrapper {
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}

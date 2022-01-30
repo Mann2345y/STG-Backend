@@ -14,15 +14,18 @@ import { addCartItem } from "../../../Redux/actions/cartActions";
 import { addWishlist } from "../../../Redux/actions/wishlistActions";
 
 const RightBlock = () => {
-  const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+  const user = JSON.parse(localStorage.getItem("loggedUser"));
   const { product } = useSelector((state) => state.singleProduct);
   const quantity = 1;
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log(loggedUser._id, product._id, quantity);
   const addCartHandler = () => {
-    dispatch(addCartItem(loggedUser.id, product._id, quantity));
-    navigate("/cart");
+    if (user) {
+      dispatch(addCartItem(user.id, product._id, quantity));
+      navigate("/cart");
+    } else {
+      navigate("/login");
+    }
   };
   return (
     <div className={styles.wrapper}>
@@ -56,16 +59,9 @@ const RightBlock = () => {
       <div className={styles.buttonsWrapper}>
         <Buttons clickHandler={addCartHandler}>
           <AiOutlineShoppingCart size={28} />
-          <h3 style={{ marginLeft: "10px" }}>Add To Cart</h3>
+          <h3 style={{ marginLeft: "10px" }}>Buy Now</h3>
         </Buttons>
-        <Buttons
-          clickHandler={() => {
-            dispatch(addWishlist(loggedUser.id, product._id));
-          }}
-        >
-          <AiOutlineHeart size={28} />
-          <h3 style={{ marginLeft: "10px" }}>Wish List</h3>
-        </Buttons>
+
         <Buttons>
           <FaOpencart size={28} />
           <h3 style={{ marginLeft: "10px" }}>Add To Group Cart</h3>

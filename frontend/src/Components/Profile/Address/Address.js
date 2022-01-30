@@ -9,7 +9,7 @@ import Buttons from "../../../Reusables/Buttons";
 const Address = () => {
   const { loading, error, addresses } = useSelector((state) => state.addresses);
   return (
-    <div className={styles.wrapper}>
+    <>
       <div className={styles.wrapper}>
         <h2>Addresses</h2>
         {loading ? (
@@ -17,13 +17,11 @@ const Address = () => {
         ) : error ? (
           <Message>{error}</Message>
         ) : addresses.length > 0 ? (
-          <div className={styles.addressWrapper}>
+          <div className={styles.tabsWrapper}>
             <AddressForm />
-            <div className={styles.tabsWrapper}>
-              {addresses.map((item, index) => {
-                return <AddressForm item={item} key={index} />;
-              })}
-            </div>
+            {addresses.map((item, index) => {
+              return <AddressForm item={item} key={index} />;
+            })}
           </div>
         ) : (
           <div className={styles.notFoundWrapper}>
@@ -32,7 +30,7 @@ const Address = () => {
           </div>
         )}
       </div>
-    </div>
+    </>
   );
 };
 

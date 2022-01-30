@@ -11,6 +11,7 @@ const Wrapper = styled.div`
   height: 100%;
   width: 75%;
   position: relative;
+  border: 1px solid #d3d3d3;
 `;
 
 const RightBlock = ({
@@ -29,6 +30,12 @@ const RightBlock = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            style={{
+              height: "100%",
+              width: "100%",
+              padding: "25px",
+              position: "absolute",
+            }}
           >
             <ProfileEdit />
           </motion.div>
@@ -39,6 +46,12 @@ const RightBlock = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            style={{
+              height: "100%",
+              width: "100%",
+              padding: "25px",
+              position: "absolute",
+            }}
           >
             <Address />
           </motion.div>
@@ -49,7 +62,12 @@ const RightBlock = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            style={{ height: "100%", width: "100%", padding: "25px" }}
+            style={{
+              height: "100%",
+              width: "100%",
+              padding: "25px",
+              position: "absolute",
+            }}
           >
             <OrderHistory />
           </motion.div>
@@ -60,6 +78,12 @@ const RightBlock = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            style={{
+              height: "100%",
+              width: "100%",
+              padding: "25px",
+              position: "absolute",
+            }}
           >
             <Wishlist />
           </motion.div>
@@ -70,6 +94,12 @@ const RightBlock = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            style={{
+              height: "100%",
+              width: "100%",
+              padding: "25px",
+              position: "absolute",
+            }}
           >
             <GroupCart />
           </motion.div>

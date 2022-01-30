@@ -7,11 +7,13 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 import RightBlock from "../Components/SingleProduct/RightBlock/RightBlock";
 import LeftBlock from "../Components/SingleProduct/LeftBlock/LeftBlock";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getSingleProduct } from "../Redux/actions/productsActions";
+import Loader from "../Reusables/Loader";
+import Message from "../Reusables/Message";
 
 const Wrapper = styled.div`
-  height: fit-content;
+  height: 800px;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -19,6 +21,16 @@ const Wrapper = styled.div`
 `;
 
 const SingleProduct = () => {
+  const {
+    loading: wishlistLoading,
+    error: wishlistError,
+    wishlist,
+  } = useSelector((state) => state.wishlist);
+  const {
+    loading: productLoading,
+    error: productError,
+    product,
+  } = useSelector((state) => state.singleProduct);
   const { id } = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -33,8 +45,19 @@ const SingleProduct = () => {
       <NavBar />
       <Container>
         <Wrapper>
-          <LeftBlock />
-          <RightBlock />
+          {wishlistLoading || productLoading ? (
+            <Loader></Loader>
+          ) : wishlistError || productError ? (
+            <Message>
+              {wishlistError.message}
+              {productError.message}
+            </Message>
+          ) : (
+            <>
+              <LeftBlock />
+              <RightBlock />
+            </>
+          )}
         </Wrapper>
       </Container>
       <Footer />

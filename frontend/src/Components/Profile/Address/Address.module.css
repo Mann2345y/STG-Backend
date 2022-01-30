@@ -1,9 +1,7 @@
 .wrapper {
   height: 100%;
   width: 100%;
-  position: absolute;
   background: white;
-  padding: 25px;
 }
 .notFoundWrapper {
   height: 100%;
@@ -14,12 +12,9 @@
   align-items: center;
 }
 .tabsWrapper {
-  height: 80%;
+  height: 85%;
   width: 100%;
   overflow-y: auto;
   padding-left: 10px;
-}
-.addressWrapper {
-  height: 100%;
-  width: 100%;
+  margin-top: 25px;
 }

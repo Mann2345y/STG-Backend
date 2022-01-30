@@ -13,6 +13,7 @@ import Profile from "./Pages/Profile";
 import { getCartItems } from "./Redux/actions/cartActions";
 import { getAddresses } from "./Redux/actions/addressActions";
 import { getOrderHistory } from "./Redux/actions/orderActions";
+import { getWishlist } from "./Redux/actions/wishlistActions";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ function App() {
       dispatch(getCartItems(user.id));
       dispatch(getAddresses(user.id));
       dispatch(getOrderHistory(user.id));
+      dispatch(getWishlist(user.id));
     }
   }, [dispatch, user]);
   return (

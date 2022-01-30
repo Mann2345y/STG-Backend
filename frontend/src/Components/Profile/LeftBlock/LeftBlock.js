@@ -8,6 +8,9 @@ import { BsSuitHeartFill as Wishlist } from "react-icons/bs";
 import { FaAddressCard as Address } from "react-icons/fa";
 import { FiLogOut as Logout } from "react-icons/fi";
 import { CgShoppingBag as OrderHistory } from "react-icons/cg";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../../../Redux/actions/userActions";
+import { useNavigate } from "react-router-dom";
 
 const LeftBlock = ({
   profileHandler,
@@ -16,6 +19,8 @@ const LeftBlock = ({
   wishlistHandler,
   groupcartHandler,
 }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   return (
     <div className={styles.wrapper}>
       <div className={styles.profileWrapper}>
@@ -43,7 +48,13 @@ const LeftBlock = ({
           <Wishlist size={21} />
           <h4 style={{ marginLeft: "20px" }}>Wishlist</h4>
         </div>
-        <div className={styles.tab}>
+        <div
+          className={styles.tab}
+          onClick={() => {
+            dispatch(logoutUser());
+            navigate("/");
+          }}
+        >
           <Logout size={21} />
           <h4 style={{ marginLeft: "20px" }}>Logout</h4>
         </div>
