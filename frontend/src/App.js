@@ -34,9 +34,13 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginSignup />} />
           <Route path="/singleproduct/:id" element={<SingleProduct />} />
-          <Route path="/products" element={<AllProducts />} />
-          <Route path="/cart" element={<Cart />} />{" "}
+          <Route path="/products/page/:pageNumber" element={<AllProducts />} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/profile" element={<Profile />} />
+          <Route
+            path="/products/:keyword/page/:pageNumber"
+            element={<AllProducts />}
+          />
         </Routes>
       </ScrollToTop>
     </AnimatePresence>

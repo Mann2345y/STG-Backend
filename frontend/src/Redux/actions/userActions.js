@@ -11,6 +11,8 @@ import {
 } from "../constants/userConstants";
 import { axiosInstance } from "../axios";
 import { GET_CART_ITEM_SUCCESS } from "../constants/cartConstants";
+import { GET_WISHLIST_SUCCESS } from "../constants/wishlistConstants";
+import { GET_ADDRESSES_SUCCESS } from "../constants/addressConstants";
 
 export const loginUser = (email, password) => async (dispatch) => {
   try {
@@ -21,19 +23,22 @@ export const loginUser = (email, password) => async (dispatch) => {
       email,
       password,
     });
-    const user = data;
     localStorage.setItem("loggedUser", JSON.stringify(data));
     dispatch({
       type: LOGGED_USER_LOGIN_SUCCESS,
       payload: data,
     });
-    const { data: cartData } = await axiosInstance.post("/api/users/cart", {
-      id: user.id,
-    });
-    localStorage.setItem("cartItems", JSON.stringify(cartData));
     dispatch({
       type: GET_CART_ITEM_SUCCESS,
-      payload: cartData,
+      payload: data.cartItems,
+    });
+    dispatch({
+      type: GET_WISHLIST_SUCCESS,
+      payload: data.wishlist,
+    });
+    dispatch({
+      type: GET_ADDRESSES_SUCCESS,
+      payload: data.addresses,
     });
   } catch (error) {
     dispatch({

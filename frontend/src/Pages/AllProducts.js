@@ -15,7 +15,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
 `;
 
-const AllProducts = () => {
+const AllProducts = ({ match }) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -26,7 +26,7 @@ const AllProducts = () => {
       <Container>
         <Wrapper>
           <LeftBlock />
-          <RightBlock />
+          <RightBlock match={match} />
         </Wrapper>
       </Container>
       <Footer />

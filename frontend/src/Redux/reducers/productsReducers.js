@@ -13,7 +13,12 @@ export const allProductsReducer = (state = { products: [] }, action) => {
       return { loading: true, products: [] };
     }
     case ALL_PRODUCTS_SUCCESS: {
-      return { loading: false, products: action.payload };
+      return {
+        loading: false,
+        products: action.payload.products,
+        pages: action.payload.pages,
+        page: action.payload.page,
+      };
     }
     case ALL_PRODUCTS_FAIL: {
       return { loading: false, error: action.payload };

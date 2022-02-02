@@ -14,19 +14,20 @@ const Wrapper = styled.div`
 `;
 
 const NavBar = () => {
-  const [open, setOpen] = useState(false);
-  const toggleOpen = () => {
-    setOpen(!open);
+  const [openSearch, setOpenSearch] = useState(false);
+  const toggleSearch = () => {
+    setOpenSearch(!openSearch);
   };
-  const closeOpen = () => {
-    setOpen(false);
+  const closeSearch = () => {
+    setOpenSearch(false);
   };
+
   return (
     <Wrapper>
       <Container>
-        <UpperNav toggleOpen={toggleOpen} />
+        <UpperNav toggleSearch={toggleSearch} />
       </Container>
-      <LowerNav open={open} closeOpen={closeOpen} />
+      <LowerNav openSearch={openSearch} closeSearch={closeSearch} />
     </Wrapper>
   );
 };

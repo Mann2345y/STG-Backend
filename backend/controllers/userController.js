@@ -78,6 +78,9 @@ const authUser = asyncHandler(async (req, res) => {
       name: userFound.name,
       email: userFound.email,
       token: generateToken(userFound._id),
+      cartItems: userFound.cartItems,
+      wishlist: userFound.wishlist,
+      addresses: userFound.addresses,
     });
   } else {
     res.status(401);

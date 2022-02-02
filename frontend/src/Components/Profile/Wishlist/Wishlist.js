@@ -35,7 +35,7 @@ const OrderHistory = () => {
         </>
       ) : (
         <Wrapper>
-          <h3>No Orders Placed</h3>
+          <h3>No Wishlisted Items</h3>
         </Wrapper>
       )}
     </>
