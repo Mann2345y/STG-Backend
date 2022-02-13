@@ -6,6 +6,9 @@ import {
   LOGGED_USER_LOGIN_SUCCESS,
   LOGGED_USER_UPDATE_SUCCESS,
   LOGGED_USER_REMOVE_SUCCESS,
+  GET_ALL_USERS_REQUEST,
+  GET_ALL_USERS_SUCCESS,
+  GET_ALL_USERS_FAIL,
   LOGGED_USER_CHANGE_FAIL,
   LOGGED_USER_LOGOUT,
 } from "../constants/userConstants";
@@ -47,6 +50,23 @@ export const loginUser = (email, password) => async (dispatch) => {
         error.response && error.response.data.message
           ? error.response.data.message
           : error.message,
+    });
+  }
+};
+export const getAllUsers = () => async (dispatch) => {
+  try {
+    dispatch({
+      type: GET_ALL_USERS_REQUEST,
+    });
+    const { data } = await axiosInstance.get("/api/users");
+    dispatch({
+      type: GET_ALL_USERS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_ALL_USERS_FAIL,
+      payload: error,
     });
   }
 };

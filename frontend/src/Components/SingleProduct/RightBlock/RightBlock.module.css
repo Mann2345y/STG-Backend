@@ -66,6 +66,28 @@
 .buttonsWrapper {
   width: 100%;
   display: flex;
-  justify-content: space-between;
   margin-top: 50px;
+}
+.groupcartWrapper {
+  height: fit-content;
+  width: 200px;
+  margin-left: 100px;
+}
+.selectCart {
+  height: 100px;
+  width: 200px;
+  overflow-y: auto;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.tab {
+  height: 35px;
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+  transition: all 0.2s ease-in;
+}
+.tab:hover {
+  background: red;
 }

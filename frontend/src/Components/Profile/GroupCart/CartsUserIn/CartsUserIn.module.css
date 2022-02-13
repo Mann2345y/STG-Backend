@@ -1,0 +1,54 @@
+.wrapper {
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+}
+.backButton {
+  height: 8%;
+  width: fit-content;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  cursor: pointer;
+}
+.contentBox {
+  height: 92%;
+  width: 100%;
+  padding: 20px;
+}
+.tabs {
+  height: 90%;
+  width: 100%;
+  overflow-y: auto;
+  padding-left: 10px;
+}
+.tabWrapper {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tabContent {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.buttonWrapper {
+  height: 100%;
+  width: 150px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button {
+  height: 40px;
+  width: 60px;
+  border: 1px solid #d3d3d3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

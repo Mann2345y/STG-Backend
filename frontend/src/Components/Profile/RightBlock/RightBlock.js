@@ -4,12 +4,12 @@ import styled from "styled-components";
 import ProfileEdit from "../ProfileEdit/ProfileEdit";
 import Address from "../Address/Address";
 import OrderHistory from "../OrderHistory/OrderHistory";
-import GroupCart from "../GroupCart/Groupcart";
 import Wishlist from "../Wishlist/Wishlist";
+import Groupcart from "../GroupCart/Groupcart";
 
 const Wrapper = styled.div`
   height: 100%;
-  width: 75%;
+  width: 80%;
   position: relative;
   border: 1px solid #d3d3d3;
 `;
@@ -19,7 +19,7 @@ const RightBlock = ({
   addressEditActive,
   orderHistoryActive,
   wishlistActive,
-  groupCartActive,
+  groupcartActive,
 }) => {
   return (
     <Wrapper>
@@ -88,20 +88,19 @@ const RightBlock = ({
             <Wishlist />
           </motion.div>
         )}
-        {groupCartActive && (
+        {groupcartActive && (
           <motion.div
-            key="cart"
+            key="groupcart"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             style={{
               height: "100%",
               width: "100%",
-              padding: "25px",
               position: "absolute",
             }}
           >
-            <GroupCart />
+            <Groupcart />
           </motion.div>
         )}
       </AnimatePresence>

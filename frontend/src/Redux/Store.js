@@ -5,28 +5,44 @@ import {
   allProductsReducer,
   singleProductReducer,
 } from "./reducers/productsReducers";
-import { loggedUserReducer } from "./reducers/userReducers";
+import { allUsersReducer, loggedUserReducer } from "./reducers/userReducers";
 import { cartReducer } from "../Redux/reducers/cartReducers";
 import { addressReducer } from "../Redux/reducers/addressReducer";
 import { orderHistoryReducer } from "./reducers/orderReducer";
 import { wishlistReducer } from "./reducers/wishlistReducer";
+import { groupcartReducer } from "./reducers/groupcartReducer";
 
 const reducer = combineReducers({
   allProducts: allProductsReducer,
+  allUsers: allUsersReducer,
   singleProduct: singleProductReducer,
   loggedUser: loggedUserReducer,
   cart: cartReducer,
   addresses: addressReducer,
   orderHistory: orderHistoryReducer,
   wishlist: wishlistReducer,
+  groupcart: groupcartReducer,
 });
 
 const loggedUserFromStorage = localStorage.getItem("loggedUser")
   ? JSON.parse(localStorage.getItem("loggedUser"))
   : {};
 
+const productsFromStorage = localStorage.getItem("productsInCart")
+  ? JSON.parse(localStorage.getItem("productsInCart"))
+  : [];
+const usersFromStorage = localStorage.getItem("usersInCart")
+  ? JSON.parse(localStorage.getItem("usersInCart"))
+  : [];
+
 const InitialState = {
   loggedUser: { user: loggedUserFromStorage },
+  groupcart: {
+    newCartState: { products: productsFromStorage, users: usersFromStorage },
+    cartsOfUser: {},
+    cartsUserIn: {},
+    currentUserCart: {},
+  },
 };
 
 const middleware = [thunk];

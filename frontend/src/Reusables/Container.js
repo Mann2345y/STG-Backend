@@ -8,7 +8,7 @@ const Wrapper = styled.div`
 
 const InnerWrapper = styled.div`
   height: fit-content;
-  width: 80%;
+  width: 85%;
   margin: auto;
 `;
 

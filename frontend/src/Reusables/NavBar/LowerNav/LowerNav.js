@@ -24,7 +24,7 @@ const LowerNav = ({ openSearch, closeSearch }) => {
   const submitHandler = (e) => {
     e.preventDefault();
     if (keyword.trim()) {
-      navigate(`/products/${keyword}`);
+      navigate(`/products/${keyword}/page/1`);
     } else {
       navigate("/");
     }

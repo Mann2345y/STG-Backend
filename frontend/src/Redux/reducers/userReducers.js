@@ -7,6 +7,9 @@ import {
   LOGGED_USER_LOGOUT,
   CREATE_USER_REQUEST,
   CREATE_USER_SUCCESS,
+  GET_ALL_USERS_REQUEST,
+  GET_ALL_USERS_SUCCESS,
+  GET_ALL_USERS_FAIL,
   CREATE_USER_FAIL,
   LOGGED_USER_CHANGE_SUCCESS,
 } from "../constants/userConstants";
@@ -47,6 +50,21 @@ export const createUserReducer = (state = {}, action) => {
       return { loading: false, user: action.payload };
     }
     case CREATE_USER_FAIL: {
+      return { loading: false, error: action.payload };
+    }
+    default:
+      return state;
+  }
+};
+export const allUsersReducer = (state = {}, action) => {
+  switch (action.type) {
+    case GET_ALL_USERS_REQUEST: {
+      return { loading: true, user: {} };
+    }
+    case GET_ALL_USERS_SUCCESS: {
+      return { loading: false, users: action.payload };
+    }
+    case GET_ALL_USERS_FAIL: {
       return { loading: false, error: action.payload };
     }
     default:

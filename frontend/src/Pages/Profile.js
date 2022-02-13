@@ -9,6 +9,7 @@ import RightBlock from "../Components/Profile/RightBlock/RightBlock";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getOrderHistory } from "../Redux/actions/orderActions";
+import { getAllUsers } from "../Redux/actions/userActions";
 
 const Wrapper = styled.div`
   height: 650px;
@@ -24,21 +25,21 @@ const Profile = () => {
   const user = JSON.parse(localStorage.getItem("loggedUser"));
   useEffect(() => {
     dispatch(getOrderHistory(user.id));
+    dispatch(getAllUsers());
   }, []);
 
   const [profileEditActive, setProfileEditActive] = useState(true);
   const [addressEditActive, setAddressEditActive] = useState(false);
   const [orderHistoryActive, setOrderHistoryActive] = useState(false);
   const [wishlistActive, setWishlistActive] = useState(false);
-  const [groupCartActive, setGroupCartActive] = useState(false);
+  const [groupcartActive, setGroupcartActive] = useState(false);
 
   const profileHandler = () => {
     setProfileEditActive(true);
     setAddressEditActive(false);
     setOrderHistoryActive(false);
     setWishlistActive(false);
-    setGroupCartActive(false);
-    console.log("click");
+    setGroupcartActive(false);
   };
 
   const addressHandler = () => {
@@ -46,7 +47,7 @@ const Profile = () => {
     setAddressEditActive(true);
     setOrderHistoryActive(false);
     setWishlistActive(false);
-    setGroupCartActive(false);
+    setGroupcartActive(false);
   };
 
   const orderhistoryHandler = () => {
@@ -54,7 +55,7 @@ const Profile = () => {
     setAddressEditActive(false);
     setOrderHistoryActive(true);
     setWishlistActive(false);
-    setGroupCartActive(false);
+    setGroupcartActive(false);
   };
 
   const wishlistHandler = () => {
@@ -62,7 +63,7 @@ const Profile = () => {
     setAddressEditActive(false);
     setOrderHistoryActive(false);
     setWishlistActive(true);
-    setGroupCartActive(false);
+    setGroupcartActive(false);
   };
 
   const groupcartHandler = () => {
@@ -70,7 +71,7 @@ const Profile = () => {
     setAddressEditActive(false);
     setOrderHistoryActive(false);
     setWishlistActive(false);
-    setGroupCartActive(true);
+    setGroupcartActive(true);
   };
 
   return (
@@ -94,7 +95,7 @@ const Profile = () => {
             addressEditActive={addressEditActive}
             orderHistoryActive={orderHistoryActive}
             wishlistActive={wishlistActive}
-            groupCartActive={groupCartActive}
+            groupcartActive={groupcartActive}
           />
         </Wrapper>
       </Container>
