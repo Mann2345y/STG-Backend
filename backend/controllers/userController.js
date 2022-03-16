@@ -1,4 +1,6 @@
 import asyncHandler from "express-async-handler";
+import fs from "fs";
+import path from "path";
 import User from "../models/user.js";
 import Product from "../models/product.js";
 import generateToken from "../tokenGenerator.js";
@@ -17,7 +19,7 @@ const getUserById = asyncHandler(async (req, res) => {
   }
 });
 const createUser = asyncHandler(async (req, res) => {
-  const { name, email, isAdmin, password } = req.body;
+  const { name, email, isAdmin, password, image } = req.body;
   const userExists = await User.findOne({ email });
   if (userExists) {
     res.status(404);
@@ -27,6 +29,7 @@ const createUser = asyncHandler(async (req, res) => {
       name,
       email,
       password,
+      image,
       isAdmin,
     });
     if (createdUser) {
@@ -56,14 +59,25 @@ const removeUser = asyncHandler(async (req, res) => {
   }
 });
 const updateUser = asyncHandler(async (req, res) => {
-  const { name, email, isAdmin } = req.body;
-  const loggedUser = await User.findById(req.userId);
+  const { userId, name, email, isAdmin, image } = req.body;
+  const loggedUser = await User.findById(userId);
   if (loggedUser) {
     loggedUser.name = name || loggedUser.name;
     loggedUser.email = email || loggedUser.email;
     loggedUser.isAdmin = isAdmin || loggedUser.isAdmin;
+    loggedUser.image = image || loggedUser.image;
     const updatedUser = await loggedUser.save();
-    res.status(201).json(updatedUser);
+    res.status(201).json({
+      id: updatedUser._id,
+      name: updatedUser.name,
+      email: updatedUser.email,
+      image: updatedUser.image,
+      token: generateToken(updatedUser._id),
+      cartItems: updatedUser.cartItems,
+      wishlist: updatedUser.wishlist,
+      addresses: updatedUser.addresses,
+      image: updatedUser.image,
+    });
   } else {
     res.status(401);
     throw new Error("Invalid User data !");
@@ -77,10 +91,12 @@ const authUser = asyncHandler(async (req, res) => {
       id: userFound._id,
       name: userFound.name,
       email: userFound.email,
+      image: userFound.image,
       token: generateToken(userFound._id),
       cartItems: userFound.cartItems,
       wishlist: userFound.wishlist,
       addresses: userFound.addresses,
+      image: userFound.image,
     });
   } else {
     res.status(401);
@@ -304,7 +320,31 @@ const removeWishlist = asyncHandler(async (req, res) => {
     throw new Error("Invalid User");
   }
 });
-
+const deleteUserImage = asyncHandler(async (req, res) => {
+  const { userId } = req.body;
+  const user = await User.findById(userId);
+  const __dirname = path.resolve();
+  const imagepath = path.join(__dirname, `/frontend/public/${user.image}`);
+  if (user) {
+    if (user.image != "images/defaultAvatar.png") {
+      const filedeleted = fs.promises.unlink(imagepath);
+      if (filedeleted) {
+        user.image = "images/defaultAvatar.png";
+        user.save();
+        res.status(201).send(user);
+      } else {
+        res.status(401);
+        throw new Error("file not found");
+      }
+    } else {
+      res.status(401);
+      throw new Error("Can't delete Avatar");
+    }
+  } else {
+    res.status(401);
+    throw new Error("Invalid User Id");
+  }
+});
 export {
   getUsers,
   getUserById,
@@ -323,4 +363,5 @@ export {
   emptyWishlist,
   addWishlist,
   removeWishlist,
+  deleteUserImage,
 };

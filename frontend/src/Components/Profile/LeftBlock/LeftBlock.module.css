@@ -17,8 +17,10 @@
   border: 1px solid #d3d3d3;
 }
 .profileImage {
-  height: 85%;
-  width: 85%;
+  height: 150px;
+  width: 150px;
+  background-size: 150px 150px;
+  margin-bottom: 20px;
 }
 .tabsWrapper {
   height: 60%;

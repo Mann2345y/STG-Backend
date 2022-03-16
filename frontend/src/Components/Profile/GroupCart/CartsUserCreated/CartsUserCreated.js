@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./CartsUserCreated.module.css";
-import { HiLogout as Back } from "react-icons/hi";
+import { AiOutlineArrowLeft as Back } from "react-icons/ai";
 import { CgTrash as Trash, CgDetailsMore as Open } from "react-icons/cg";
 import TabLayout from "../../../../Reusables/TabLayout";
 import Loader from "../../../../Reusables/Loader";
@@ -12,9 +12,13 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addCartToCurrentUserCart,
   deleteGroupCart,
+  getGroupCarts,
 } from "../../../../Redux/actions/groupcartActions";
+import { useEffect } from "react";
 
 const CartsUserCreated = ({ tabsHandler }) => {
+  const dispatch = useDispatch();
+  const { id: userId } = useSelector((state) => state.loggedUser.user);
   const [toggleEdit, setToggleEdit] = useState(false);
   const { loading, error, cartsOfUser } = useSelector(
     (state) => state.groupcart
@@ -22,16 +26,11 @@ const CartsUserCreated = ({ tabsHandler }) => {
   const toggleHandler = () => {
     setToggleEdit(!toggleEdit);
   };
-  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getGroupCarts(userId));
+  }, [toggleEdit]);
   return (
     <div className={styles.wrapper}>
-      <div className={styles.backButton} onClick={tabsHandler}>
-        <Back
-          size={35}
-          style={{ transform: "rotate(180deg)", marginRight: "15px" }}
-        />
-        <h4>Back</h4>
-      </div>
       <div className={styles.contentBox}>
         {!toggleEdit ? (
           <motion.div
@@ -39,8 +38,16 @@ const CartsUserCreated = ({ tabsHandler }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            style={{ height: "inherit", width: "inherit" }}
+            style={{
+              height: "inherit",
+              width: "inherit",
+              padding: "50px",
+            }}
           >
+            {" "}
+            <div className={styles.backButton} onClick={tabsHandler}>
+              <Back size={24} />
+            </div>
             <h2 style={{ marginLeft: "10px", marginBottom: "25px" }}>
               Your Carts
             </h2>

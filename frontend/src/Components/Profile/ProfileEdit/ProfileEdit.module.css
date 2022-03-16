@@ -16,7 +16,8 @@
 .inputBoxWrapper {
   height: 50px;
   width: 250px;
-  margin: 0 55px;
+  margin: 0 30px;
+  position: relative;
 }
 .open {
   opacity: 1;
@@ -25,4 +26,31 @@
 .close {
   opacity: 0;
   z-index: -1;
+}
+.submitButton {
+  height: 100%;
+  width: 100%;
+  background: none;
+}
+
+.inputBoxWrapper input[type="file"] {
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: none;
+  cursor: pointer;
+}
+.fileUpload {
+  height: 100%;
+  width: 100%;
+  border: 2px solid #ff4433;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding-left: 20px;
 }

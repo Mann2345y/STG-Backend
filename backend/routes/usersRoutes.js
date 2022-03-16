@@ -17,12 +17,14 @@ import {
   getCartItems,
   getWishlist,
   emptyWishlist,
+  deleteUserImage,
 } from "../controllers/userController.js";
 import { checkAuth, checkAdmin } from "../middlewares/authentication.js";
 
 const router = express.Router();
 
 router.route("/").get(getUsers).post(checkAuth, checkAdmin, createUser);
+router.route("/deleteImage").post(deleteUserImage);
 router.route("/signup").post(createUser).put(checkAuth, updateUser);
 router.route("/login").post(authUser);
 router.route("/address").post(checkAuth, getAddresses);

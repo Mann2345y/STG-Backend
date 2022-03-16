@@ -11,22 +11,35 @@ import { FaOpencart } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addCartItem } from "../../../Redux/actions/cartActions";
-import { addProductInCart } from "../../../Redux/actions/groupcartActions";
+import {
+  addProductInCart,
+  addProductInCurrentCart,
+} from "../../../Redux/actions/groupcartActions";
 
 const RightBlock = () => {
   const user = JSON.parse(localStorage.getItem("loggedUser"));
   const [openDropdown, setOpenDropdown] = useState(false);
+  const [qty, setQty] = useState(1);
   const { product } = useSelector((state) => state.singleProduct);
   const { cartsOfUser, cartsUserIn } = useSelector((state) => state.groupcart);
-  const quantity = 1;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const addCartHandler = () => {
     if (user) {
-      dispatch(addCartItem(user.id, product._id, quantity));
+      dispatch(addCartItem(user.id, product._id, qty));
       navigate("/cart");
     } else {
       navigate("/login");
+    }
+  };
+  const addQtyHandler = () => {
+    if (qty < product.countInStock) {
+      setQty(qty + 1);
+    }
+  };
+  const reduceQtyHandler = () => {
+    if (qty > 1) {
+      setQty(qty - 1);
     }
   };
   return (
@@ -46,13 +59,13 @@ const RightBlock = () => {
         <h4>Quantity: </h4>
         <div className={styles.qtyWrapper}>
           <div className={styles.qty}>
-            <p>1</p>
+            <p>{qty}</p>
           </div>
           <div className={styles.qtyButtonsWrapper}>
-            <div className={styles.addButton}>
+            <div className={styles.addButton} onClick={addQtyHandler}>
               <AiOutlinePlus />
             </div>
-            <div className={styles.removeButton}>
+            <div className={styles.removeButton} onClick={reduceQtyHandler}>
               <AiOutlineMinus />
             </div>
           </div>
@@ -80,6 +93,15 @@ const RightBlock = () => {
                 exit={{ opacity: 0 }}
                 className={styles.selectCart}
               >
+                <div
+                  className={styles.tab}
+                  onClick={() => {
+                    dispatch(addProductInCurrentCart(product._id));
+                    navigate("/products/page/1");
+                  }}
+                >
+                  <h5>Current Cart</h5>
+                </div>
                 {cartsOfUser.map((item, index) => {
                   return (
                     <div
@@ -96,7 +118,14 @@ const RightBlock = () => {
                 })}
                 {cartsUserIn.map((item, index) => {
                   return (
-                    <div key={index} className={styles.tab}>
+                    <div
+                      key={index}
+                      className={styles.tab}
+                      onClick={() => {
+                        dispatch(addProductInCart(item._id, product._id));
+                        navigate("/profile");
+                      }}
+                    >
                       <h5>{item.cartname}</h5>
                     </div>
                   );

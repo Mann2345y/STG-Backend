@@ -21,7 +21,6 @@ const Motion = styled(motion.div)`
   height: 100%;
   width: 100%;
   position: absolute;
-  padding: 10px;
 `;
 
 const Groupcart = () => {
@@ -87,6 +86,7 @@ const Groupcart = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            style={{ position: "relative" }}
           >
             <CreateCart tabsHandler={tabsHandler} />
           </Motion>

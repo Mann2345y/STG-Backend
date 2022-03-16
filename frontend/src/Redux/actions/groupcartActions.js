@@ -17,7 +17,8 @@ import {
   CHANGE_GROUP_CART_REQUEST,
   CHANGE_GROUP_CART_SUCCESS,
   CHANGE_GROUP_CART_FAIL,
-  EMPTY_NEW_CART,
+  EMPTY_PRODUCTS_FROM_NEW_CART,
+  EMPTY_USER_FROM_NEW_CART,
   DELETE_GROUP_CART_REQUEST,
   DELETE_GROUP_CART_SUCCESS,
   DELETE_GROUP_CART_FAIL,
@@ -61,6 +62,7 @@ export const getGroupCartsUserIsIn = (userId) => async (dispatch) => {
     });
   }
 };
+
 export const createCart =
   (cartname, userId, products, users) => async (dispatch) => {
     try {
@@ -88,29 +90,76 @@ export const addCartToCurrentUserCart = (id) => async (dispatch, getState) => {
   const { cartsOfUser, cartsUserIn } = getState().groupcart;
   let cartToAdd = {};
   cartToAdd =
-    cartsOfUser.find((item) => item._id == id) ||
-    cartsUserIn.find((item) => item._id == id);
+    cartsOfUser.find((item) => item._id === id) ||
+    cartsUserIn.find((item) => item._id === id);
   dispatch({
     type: ADD_CART_IN_NEW_CART_STATE,
     payload: cartToAdd,
   });
 };
-export const addProductInCurrentCart = () => async (dispatch, getState) => {
-  const { product } = getState().singleProduct;
+// export const addProductInCurrentCart = () => async (dispatch, getState) => {
+//   const { product } = getState().singleProduct;
+//   const { products } = getState().groupcart.newCartState;
+//   let newProducts;
+//   if (products.length > 0) {
+//     let productExist = products.find((item) => item.id == product._id);
+//     if (productExist) {
+//       newProducts = [...products];
+//     } else {
+//       newProducts = [
+//         ...products,
+//         {
+//           id: product._id,
+//           name: product.name,
+//           brand: product.brand,
+//           image: product.image,
+//           price: product.price,
+//           rating: product.rating,
+//         },
+//       ];
+//     }
+//   } else {
+//     newProducts = [
+//       {
+//         id: product._id,
+//         name: product.name,
+//         brand: product.brand,
+//         image: product.image,
+//         price: product.price,
+//         rating: product.rating,
+//       },
+//     ];
+//   }
+//   localStorage.setItem("productsInCart", JSON.stringify(newProducts));
+//   dispatch({
+//     type: ADD_PRODUCT_IN_CURRENT_CART,
+//     payload: newProducts,
+//   });
+// };
+export const addProductInCurrentCart = (id) => async (dispatch, getState) => {
+  const { products: allProducts } = getState().allProducts;
+  const product = allProducts.find((item) => {
+    return item._id == id;
+  });
   const { products } = getState().groupcart.newCartState;
   let newProducts;
   if (products.length > 0) {
-    newProducts = [
-      ...products,
-      {
-        id: product._id,
-        name: product.name,
-        brand: product.brand,
-        image: product.image,
-        price: product.price,
-        rating: product.rating,
-      },
-    ];
+    let productExist = products.find((item) => item.id == product._id);
+    if (productExist) {
+      newProducts = [...products];
+    } else {
+      newProducts = [
+        ...products,
+        {
+          id: product._id,
+          name: product.name,
+          brand: product.brand,
+          image: product.image,
+          price: product.price,
+          rating: product.rating,
+        },
+      ];
+    }
   } else {
     newProducts = [
       {
@@ -132,7 +181,7 @@ export const addProductInCurrentCart = () => async (dispatch, getState) => {
 export const removeProductFromCurrentCart =
   (id) => async (dispatch, getState) => {
     const { products } = getState().groupcart.newCartState;
-    const newProducts = products.filter((item) => item.id != id);
+    const newProducts = products.filter((item) => item.id !== id);
     localStorage.setItem("productsInCart", JSON.stringify(newProducts));
     dispatch({
       type: REMOVE_PRODUCT_FROM_CURRENT_CART,
@@ -143,18 +192,23 @@ export const addUserInCurrentCart = (id) => async (dispatch, getState) => {
   const { users: allusers } = getState().allUsers;
   const { users } = getState().groupcart.newCartState;
   const user = allusers.filter((item) => {
-    return item._id == id;
+    return item._id === id;
   });
   let newUsers;
   if (users.length > 0) {
-    newUsers = [
-      ...users,
-      {
-        id: user[0]._id,
-        name: user[0].name,
-        email: user[0].email,
-      },
-    ];
+    const userExist = users.find((item) => item.id == user[0]._id);
+    if (userExist) {
+      newUsers = [...users];
+    } else {
+      newUsers = [
+        ...users,
+        {
+          id: user[0]._id,
+          name: user[0].name,
+          email: user[0].email,
+        },
+      ];
+    }
   } else {
     newUsers = [
       {
@@ -172,19 +226,70 @@ export const addUserInCurrentCart = (id) => async (dispatch, getState) => {
 };
 export const removeUserFromCurrentCart = (id) => async (dispatch, getState) => {
   const { users } = getState().groupcart.newCartState;
-  const newUsers = users.filter((item) => item.id != id);
+  const newUsers = users.filter((item) => item.id !== id);
   localStorage.setItem("usersInCart", JSON.stringify(newUsers));
   dispatch({
     type: REMOVE_USER_IN_CURRENT_CART,
     payload: newUsers,
   });
 };
-export const emptynewCart = () => async (dispatch, getState) => {
+export const emptyProductsFromNewCart = () => async (dispatch) => {
   localStorage.removeItem("productsInCart");
-  localStorage.removeItem("usersInCart");
+  const users = JSON.parse(localStorage.getItem("usersInCart"));
+  let data;
+  if (users) {
+    data = {
+      products: {},
+      users: users,
+    };
+  } else {
+    data = { products: {}, users: {} };
+  }
+
   dispatch({
-    type: EMPTY_NEW_CART,
+    type: EMPTY_PRODUCTS_FROM_NEW_CART,
+    payload: data,
   });
+};
+export const emptyUsersFromNewCart = () => async (dispatch) => {
+  localStorage.removeItem("usersInCart");
+  const products = JSON.parse(localStorage.getItem("productsInCart"));
+  let data;
+  if (products) {
+    data = {
+      products: products,
+      users: {},
+    };
+  } else {
+    data = {
+      products: {},
+      users: {},
+    };
+  }
+  dispatch({
+    type: EMPTY_USER_FROM_NEW_CART,
+    payload: data,
+  });
+};
+export const updateCartname = (cartId, cartname) => async (dispatch) => {
+  try {
+    dispatch({
+      type: CHANGE_GROUP_CART_REQUEST,
+    });
+    const { data } = await axiosInstance.post("/api/groupcart/cartname", {
+      cartId,
+      cartname,
+    });
+    dispatch({
+      type: CHANGE_GROUP_CART_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: CHANGE_GROUP_CART_FAIL,
+      payload: error,
+    });
+  }
 };
 export const addProductInCart = (cartId, productId) => async (dispatch) => {
   try {

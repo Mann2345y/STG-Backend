@@ -8,7 +8,6 @@ const Wrapper = styled.div`
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   margin: 25px 0;
   border-radius: 5px;
-  cursor: pointer;
   display: flex;
   align-items: center;
   padding: 0 25px;

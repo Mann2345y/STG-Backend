@@ -1,4 +1,5 @@
 import express from "express";
+import path from "path";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./db.js";
@@ -6,6 +7,7 @@ import productRoutes from "./routes/productRoutes.js";
 import usersRoutes from "./routes/usersRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import groupcartRoutes from "./routes/groupcartRoutes.js";
+import uploadRoutes from "./routes/uploadRoutes.js";
 import { notFound, errorHandler } from "./middlewares/error.js";
 
 dotenv.config();
@@ -23,6 +25,8 @@ app.use("/api/groupcart", groupcartRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/users", usersRoutes);
 app.use("/api/order", orderRoutes);
+app.use("/api/upload", uploadRoutes);
+
 app.use(notFound);
 app.use(errorHandler);
 

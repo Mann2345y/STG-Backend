@@ -12,6 +12,9 @@ import Message from "../../../Reusables/Message";
 const Wrapper = styled.div`
   height: fit-content;
   width: calc(100% - 250px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const GalleryWrapper = styled.div`

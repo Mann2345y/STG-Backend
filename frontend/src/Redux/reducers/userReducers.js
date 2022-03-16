@@ -17,7 +17,7 @@ import {
 export const loggedUserReducer = (state = {}, action) => {
   switch (action.type) {
     case LOGGED_USER_CHANGE_REQUEST: {
-      return { loading: true, user: { ...state } };
+      return { loading: true, user: { ...state.user } };
     }
     case LOGGED_USER_CHANGE_SUCCESS: {
       return { loading: false, user: action.payload };

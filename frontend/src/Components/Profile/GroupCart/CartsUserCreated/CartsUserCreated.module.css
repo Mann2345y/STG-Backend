@@ -1,20 +1,25 @@
 .wrapper {
   height: 100%;
   width: 100%;
-  padding: 10px;
+  position: relative;
 }
+
 .backButton {
-  height: 5%;
-  width: fit-content;
+  height: 35px;
+  margin-bottom: 20px;
+  width: 50px;
   display: flex;
-  justify-content: left;
+  justify-content: center;
   align-items: center;
   cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgb(230, 100, 100);
 }
 .contentBox {
-  height: 95%;
+  height: 100%;
   width: 100%;
-  padding: 20px;
 }
 .tabs {
   height: 90%;
@@ -50,4 +55,5 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }

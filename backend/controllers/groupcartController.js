@@ -49,6 +49,32 @@ export const getGroupcartsUserisin = asyncHandler(async (req, res) => {
     throw new Error("No Cart created");
   }
 });
+export const updateGroupcart = asyncHandler(async (req, res) => {
+  const { id, cartname, products, linkedusers } = req.body;
+  const cartToUpdate = await Groupcart.findById(id);
+  if (cartToUpdate) {
+    cartToUpdate.cartname = cartname || cartToUpdate.cartname;
+    cartToUpdate.products = products || cartToUpdate.products;
+    cartToUpdate.linkedusers = linkedusers || cartToUpdate.linkedusers;
+    const updatedCart = await cartToUpdate.save();
+    res.status(201).json(updatedCart);
+  } else {
+    res.status(401);
+    throw new Error("Invalid Cart Id");
+  }
+});
+export const updateCartname = asyncHandler(async (req, res) => {
+  const { cartId, cartname } = req.body;
+  const cartToUpdate = await Groupcart.findById(cartId);
+  if (cartToUpdate) {
+    cartToUpdate.cartname = cartname || cartToUpdate.cartname;
+    const updatedCart = await cartToUpdate.save();
+    res.status(201).json(updatedCart);
+  } else {
+    res.status(401);
+    throw new Error("Invalid Cart Id");
+  }
+});
 export const addUserInGroupcart = asyncHandler(async (req, res) => {
   const { cartId, userId } = req.body;
   const cart = await Groupcart.findById(cartId);

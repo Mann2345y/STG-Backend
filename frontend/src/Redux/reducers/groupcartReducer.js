@@ -18,7 +18,8 @@ import {
   CHANGE_GROUP_CART_REQUEST,
   CHANGE_GROUP_CART_SUCCESS,
   CHANGE_GROUP_CART_FAIL,
-  EMPTY_NEW_CART,
+  EMPTY_PRODUCTS_FROM_NEW_CART,
+  EMPTY_USER_FROM_NEW_CART,
   ADD_CART_IN_NEW_CART_STATE,
 } from "../constants/groupcartConstants";
 
@@ -104,10 +105,16 @@ export const groupcartReducer = (
         newCartState: { ...state.newCartState, users: action.payload },
       };
     }
-    case EMPTY_NEW_CART: {
+    case EMPTY_PRODUCTS_FROM_NEW_CART: {
       return {
         ...state,
-        newCartState: { products: {}, users: {} },
+        newCartState: action.payload,
+      };
+    }
+    case EMPTY_USER_FROM_NEW_CART: {
+      return {
+        ...state,
+        newCartState: action.payload,
       };
     }
 

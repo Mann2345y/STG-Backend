@@ -55,7 +55,6 @@ export const addCartItem =
         payload: data,
       });
     } catch (error) {
-      console.log(error);
       dispatch({
         type: CART_ADD_ITEM_FAIL,
         payload: error,

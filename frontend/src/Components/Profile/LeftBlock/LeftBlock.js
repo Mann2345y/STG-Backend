@@ -8,7 +8,7 @@ import { BsSuitHeartFill as Wishlist } from "react-icons/bs";
 import { FaAddressCard as Address } from "react-icons/fa";
 import { FiLogOut as Logout } from "react-icons/fi";
 import { CgShoppingBag as OrderHistory } from "react-icons/cg";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../../Redux/actions/userActions";
 import { useNavigate } from "react-router-dom";
 
@@ -21,10 +21,14 @@ const LeftBlock = ({
 }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { user } = useSelector((state) => state.loggedUser);
   return (
     <div className={styles.wrapper}>
       <div className={styles.profileWrapper}>
-        <div className={styles.profileImage}></div>
+        <div
+          className={styles.profileImage}
+          style={{ backgroundImage: `url(${user.image})` }}
+        ></div>
         <h3>Welcome ! User</h3>
       </div>
       <div className={styles.tabsWrapper}>
