@@ -24,7 +24,7 @@ const CartsUserIn = ({ tabsHandler }) => {
     <div className={styles.wrapper}>
       {!toggleEdit ? (
         <motion.div
-          key="tabs"
+          key="tabs2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -45,27 +45,25 @@ const CartsUserIn = ({ tabsHandler }) => {
               <>
                 {cartsUserIn.map((item, index) => {
                   return (
-                    <>
-                      <TabLayout key={index}>
-                        <div className={styles.tabWrapper}>
-                          <div className={styles.tabContent}>
-                            <h3>{item.cartname}</h3>
-                            <h4>Created By : {item.parentuser.name}</h4>
-                          </div>
-                          <div className={styles.buttonWrapper}>
-                            <div
-                              className={styles.button}
-                              onClick={() => {
-                                setToggleEdit(true);
-                                dispatch(addCartToCurrentUserCart(item._id));
-                              }}
-                            >
-                              <Check size={28} />
-                            </div>
+                    <TabLayout key={index}>
+                      <div className={styles.tabWrapper}>
+                        <div className={styles.tabContent}>
+                          <h3>{item.cartname}</h3>
+                          <h4>Created By : {item.parentuser.name}</h4>
+                        </div>
+                        <div className={styles.buttonWrapper}>
+                          <div
+                            className={styles.button}
+                            onClick={() => {
+                              setToggleEdit(true);
+                              dispatch(addCartToCurrentUserCart(item._id));
+                            }}
+                          >
+                            <Check size={28} />
                           </div>
                         </div>
-                      </TabLayout>
-                    </>
+                      </div>
+                    </TabLayout>
                   );
                 })}
               </>
@@ -78,7 +76,7 @@ const CartsUserIn = ({ tabsHandler }) => {
         </motion.div>
       ) : (
         <motion.div
-          key="details"
+          key="details2"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

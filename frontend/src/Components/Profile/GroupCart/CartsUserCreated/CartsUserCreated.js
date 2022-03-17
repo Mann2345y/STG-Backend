@@ -28,7 +28,7 @@ const CartsUserCreated = ({ tabsHandler }) => {
   };
   useEffect(() => {
     dispatch(getGroupCarts(userId));
-  }, [toggleEdit]);
+  }, [dispatch, userId, toggleEdit]);
   return (
     <div className={styles.wrapper}>
       <div className={styles.contentBox}>
@@ -44,7 +44,6 @@ const CartsUserCreated = ({ tabsHandler }) => {
               padding: "50px",
             }}
           >
-            {" "}
             <div className={styles.backButton} onClick={tabsHandler}>
               <Back size={24} />
             </div>
@@ -60,35 +59,33 @@ const CartsUserCreated = ({ tabsHandler }) => {
                 <>
                   {cartsOfUser.map((item, index) => {
                     return (
-                      <>
-                        <TabLayout key={index}>
-                          <div className={styles.tabWrapper}>
-                            <div className={styles.tabText}>
-                              <h3>{item.cartname}</h3>
-                              <h4>Created On : 22/12/20</h4>
+                      <TabLayout key={index}>
+                        <div className={styles.tabWrapper}>
+                          <div className={styles.tabText}>
+                            <h3>{item.cartname}</h3>
+                            <h4>Created On : 22/12/20</h4>
+                          </div>
+                          <div className={styles.buttonWrapper}>
+                            <div
+                              className={styles.button}
+                              onClick={() => {
+                                setToggleEdit(true);
+                                dispatch(addCartToCurrentUserCart(item._id));
+                              }}
+                            >
+                              <Open size={24} />
                             </div>
-                            <div className={styles.buttonWrapper}>
-                              <div
-                                className={styles.button}
-                                onClick={() => {
-                                  setToggleEdit(true);
-                                  dispatch(addCartToCurrentUserCart(item._id));
-                                }}
-                              >
-                                <Open size={24} />
-                              </div>
-                              <div
-                                className={styles.button}
-                                onClick={() =>
-                                  dispatch(deleteGroupCart(item._id))
-                                }
-                              >
-                                <Trash size={24} />
-                              </div>
+                            <div
+                              className={styles.button}
+                              onClick={() =>
+                                dispatch(deleteGroupCart(item._id))
+                              }
+                            >
+                              <Trash size={24} />
                             </div>
                           </div>
-                        </TabLayout>
-                      </>
+                        </div>
+                      </TabLayout>
                     );
                   })}
                 </>

@@ -1,11 +1,7 @@
 import InputBox from "../../../../Reusables/InputBox/InputBox";
 import React, { useState, useEffect } from "react";
 import styles from "./CreateCart.module.css";
-import {
-  CgLogOut as Back,
-  CgTrash as Trash,
-  CgCheckO as Check,
-} from "react-icons/cg";
+import { CgTrash as Trash } from "react-icons/cg";
 import { IoClose as Close } from "react-icons/io5";
 import TabLayout from "../../../../Reusables/TabLayout";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,13 +10,10 @@ import {
   addUserInCurrentCart,
   createCart,
   removeUserFromCurrentCart,
-  removeProductFromCurrentCart,
   emptyProductsFromNewCart,
   emptyUsersFromNewCart,
 } from "../../../../Redux/actions/groupcartActions";
 import Buttons from "../../../../Reusables/Buttons";
-import Loader from "../../../../Reusables/Loader";
-import Message from "../../../../Reusables/Message";
 import { AnimatePresence, motion } from "framer-motion";
 import ModifyProducts from "../../../../Reusables/ModifyProducts";
 
@@ -35,7 +28,6 @@ const CreateCart = ({ tabsHandler }) => {
   const [showResults, setShowResults] = useState(false);
   const user = JSON.parse(localStorage.getItem("loggedUser"));
   const { users: allusers } = useSelector((state) => state.allUsers);
-  const { loading, error } = useSelector((state) => state.groupcart);
   const { products, users } = useSelector(
     (state) => state.groupcart.newCartState
   );
@@ -48,15 +40,13 @@ const CreateCart = ({ tabsHandler }) => {
         })
       );
       setShowResults(true);
-      console.log(showResults);
     } else {
       setResults([]);
       setShowResults(true);
-      console.log(showResults);
     }
-  }, [search]);
+  }, [search, allusers, showResults]);
   const createButtonHandler = () => {
-    if (name == "") {
+    if (name === "") {
       setModalOpen(true);
     } else {
       dispatch(createCart(name, user.id, products, users));
@@ -91,6 +81,23 @@ const CreateCart = ({ tabsHandler }) => {
           style={{ height: "inherit", width: "inherit", position: "absolute" }}
         >
           <div className={styles.wrapper}>
+            <div
+              className={
+                modalOpen
+                  ? `${styles.errorModal} ${styles.open}`
+                  : `${styles.errorModal} ${styles.close}`
+              }
+            >
+              <div className={styles.modalText}>
+                <div
+                  className={styles.closeButton}
+                  onClick={() => setModalOpen(false)}
+                >
+                  <Close size={24} />
+                </div>
+                <h3> Please Enter a Name for the cart</h3>
+              </div>
+            </div>
             {cartcreated ? (
               <div className={styles.cartcreatedWrapper}>
                 <svg
@@ -100,22 +107,22 @@ const CreateCart = ({ tabsHandler }) => {
                   className="iconsvg"
                 >
                   <circle
-                    class="path circle"
+                    className="path circle"
                     fill="none"
                     stroke="#73AF55"
-                    stroke-width="6"
-                    stroke-miterlimit="10"
+                    strokeWidth="6"
+                    strokeMiterlimit="10"
                     cx="65.1"
                     cy="65.1"
                     r="62.1"
                   />
                   <polyline
-                    class="path check"
+                    className="path check"
                     fill="none"
                     stroke="#73AF55"
-                    stroke-width="6"
-                    stroke-linecap="round"
-                    stroke-miterlimit="10"
+                    strokeWidth="6"
+                    strokeLinecap="round"
+                    strokeMiterlimit="10"
                     points="100.2,40.2 51.5,88.8 29.8,67.5 "
                   />
                 </svg>

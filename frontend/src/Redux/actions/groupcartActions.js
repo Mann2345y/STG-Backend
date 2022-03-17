@@ -139,12 +139,12 @@ export const addCartToCurrentUserCart = (id) => async (dispatch, getState) => {
 export const addProductInCurrentCart = (id) => async (dispatch, getState) => {
   const { products: allProducts } = getState().allProducts;
   const product = allProducts.find((item) => {
-    return item._id == id;
+    return item._id === id;
   });
   const { products } = getState().groupcart.newCartState;
   let newProducts;
   if (products.length > 0) {
-    let productExist = products.find((item) => item.id == product._id);
+    let productExist = products.find((item) => item.id === product._id);
     if (productExist) {
       newProducts = [...products];
     } else {
@@ -196,7 +196,7 @@ export const addUserInCurrentCart = (id) => async (dispatch, getState) => {
   });
   let newUsers;
   if (users.length > 0) {
-    const userExist = users.find((item) => item.id == user[0]._id);
+    const userExist = users.find((item) => item.id === user[0]._id);
     if (userExist) {
       newUsers = [...users];
     } else {

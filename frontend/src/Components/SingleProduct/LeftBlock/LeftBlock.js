@@ -16,13 +16,13 @@ const LeftBlock = () => {
   const [toggle, setToggle] = useState(false);
   useEffect(() => {
     if (wishlist) {
-      wishlist.map((item) => {
+      wishlist.forEach((item) => {
         if (item.product.id === product._id) {
           setToggle(true);
         }
       });
     }
-  }, [wishlist]);
+  }, [wishlist, product._id]);
   return (
     <div className={styles.wrapper}>
       <div

@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addProductInCart,
   addProductInCurrentCart,
-  getGroupCarts,
   removeProductFromCart,
   removeProductFromCurrentCart,
 } from "../Redux/actions/groupcartActions";
@@ -13,7 +12,6 @@ import { CgTrash as Trash } from "react-icons/cg";
 import { GrAdd } from "react-icons/gr";
 import Buttons from "./Buttons";
 import TabLayout from "./TabLayout";
-import { useNavigate } from "react-router";
 import { useState } from "react";
 
 const Wrapper = styled.div`
@@ -142,7 +140,7 @@ const ModifyProducts = ({ setModifyproduct, createcart }) => {
       setResults([]);
       setShowresults(true);
     }
-  }, [search]);
+  }, [search, products]);
   const addProductInNewCartHandler = (id) => {
     dispatch(addProductInCurrentCart(id));
     setShowresults(false);

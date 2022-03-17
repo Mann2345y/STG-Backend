@@ -8,7 +8,7 @@ import { removeProductFromCart } from "../../../../Redux/actions/groupcartAction
 import Buttons from "../../../../Reusables/Buttons";
 
 const CreateCart = ({ toggleHandler }) => {
-  const { _id, cartname, parentuser, products, linkedusers } = useSelector(
+  const { _id, cartname, parentuser, products } = useSelector(
     (state) => state.groupcart.currentUserCart
   );
   const dispatch = useDispatch();

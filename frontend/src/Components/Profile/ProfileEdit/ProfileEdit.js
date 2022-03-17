@@ -3,10 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styles from "./ProfileEdit.module.css";
 import InputBox from "../../../Reusables/InputBox/InputBox";
 import Buttons from "../../../Reusables/Buttons";
-import {
-  loginUser,
-  updateLoggedUser,
-} from "../../../Redux/actions/userActions";
+import { updateLoggedUser } from "../../../Redux/actions/userActions";
 
 const ProfileEdit = () => {
   const { user } = useSelector((state) => state.loggedUser);

@@ -57,7 +57,7 @@ const Groupcart = () => {
   useEffect(() => {
     dispatch(getGroupCarts(user.id));
     dispatch(getGroupCartsUserIsIn(user.id));
-  }, []);
+  }, [dispatch, user.id]);
   return (
     <Wrapper>
       <AnimatePresence>

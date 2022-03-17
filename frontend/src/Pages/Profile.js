@@ -26,7 +26,7 @@ const Profile = () => {
   useEffect(() => {
     dispatch(getOrderHistory(user.id));
     dispatch(getAllUsers());
-  }, []);
+  }, [dispatch, user.id]);
 
   const [profileEditActive, setProfileEditActive] = useState(true);
   const [addressEditActive, setAddressEditActive] = useState(false);

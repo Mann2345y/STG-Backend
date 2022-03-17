@@ -21,16 +21,12 @@ const Wrapper = styled.div`
 `;
 
 const SingleProduct = () => {
-  const {
-    loading: wishlistLoading,
-    error: wishlistError,
-    wishlist,
-  } = useSelector((state) => state.wishlist);
-  const {
-    loading: productLoading,
-    error: productError,
-    product,
-  } = useSelector((state) => state.singleProduct);
+  const { loading: wishlistLoading, error: wishlistError } = useSelector(
+    (state) => state.wishlist
+  );
+  const { loading: productLoading, error: productError } = useSelector(
+    (state) => state.singleProduct
+  );
   const { id } = useParams();
   const dispatch = useDispatch();
   useEffect(() => {

@@ -50,40 +50,38 @@ const CartItems = ({ addressTabHandler }) => {
             <div className={styles.itemsWrapper}>
               {cartItems.map((item, index) => {
                 return (
-                  <>
-                    <div className={styles.item} key={index}>
-                      <div
-                        style={{
-                          backgroundImage: `url(${item.product.image})`,
-                        }}
-                        className={styles.image}
-                      ></div>
-                      <div className={styles.textWrapper}>
-                        <h3>{item.product.name}</h3>
-                        <p>By: {item.product.brand}</p>
-                      </div>
-                      <div className={styles.priceWrapper}>
-                        <h3>Price :</h3>
-                        <p>{item.product.price}</p>
-                      </div>
-                      <div className={styles.quantityWrapper}>
-                        <h3>Quantity</h3>
-                        <p>{item.quantity}</p>
-                      </div>
-                      <div className={styles.amountWrapper}>
-                        <h3>Amount: </h3>
-                        {item.amount}
-                      </div>
-                      <div
-                        className={styles.removeButton}
-                        onClick={() => removeHandler(user.id, item.product.id)}
-                      >
-                        <div className={styles.buttonWrapper}>
-                          <FiTrash size={21} />
-                        </div>
+                  <div className={styles.item} key={index}>
+                    <div
+                      style={{
+                        backgroundImage: `url(${item.product.image})`,
+                      }}
+                      className={styles.image}
+                    ></div>
+                    <div className={styles.textWrapper}>
+                      <h3>{item.product.name}</h3>
+                      <p>By: {item.product.brand}</p>
+                    </div>
+                    <div className={styles.priceWrapper}>
+                      <h3>Price :</h3>
+                      <p>{item.product.price}</p>
+                    </div>
+                    <div className={styles.quantityWrapper}>
+                      <h3>Quantity</h3>
+                      <p>{item.quantity}</p>
+                    </div>
+                    <div className={styles.amountWrapper}>
+                      <h3>Amount: </h3>
+                      {item.amount}
+                    </div>
+                    <div
+                      className={styles.removeButton}
+                      onClick={() => removeHandler(user.id, item.product.id)}
+                    >
+                      <div className={styles.buttonWrapper}>
+                        <FiTrash size={21} />
                       </div>
                     </div>
-                  </>
+                  </div>
                 );
               })}
             </div>

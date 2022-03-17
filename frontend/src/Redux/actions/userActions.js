@@ -15,7 +15,6 @@ import { axiosInstance } from "../axios";
 import { GET_CART_ITEM_SUCCESS } from "../constants/cartConstants";
 import { GET_WISHLIST_SUCCESS } from "../constants/wishlistConstants";
 import { GET_ADDRESSES_SUCCESS } from "../constants/addressConstants";
-import axios from "axios";
 
 export const loginUser = (email, password) => async (dispatch) => {
   try {

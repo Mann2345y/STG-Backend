@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./Ordersummary.module.css";
 import Buttons from "../../../Reusables/Buttons";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,7 +26,7 @@ const Ordersummary = ({ addressTabHandler, cartItemsHandler }) => {
     dispatch(removeCartItem(userId, productId));
   };
   if (cartItems) {
-    cartItems.map((item) => {
+    cartItems.forEach((item) => {
       totalItems += item.quantity;
       amount += item.amount;
     });
@@ -93,14 +93,14 @@ const Ordersummary = ({ addressTabHandler, cartItemsHandler }) => {
               <div className={styles.topBlock}>
                 <h2>Selected Address: </h2>
                 {addresses.map((item, index) => {
-                  if (item._id == address) {
+                  if (item._id === address) {
                     return (
-                      <h4>
+                      <h4 key={index}>
                         {item.address}, {item.city}, {item.state},{" "}
                         {item.pincode}
                       </h4>
                     );
-                  }
+                  } else return <></>;
                 })}
               </div>
               <div className={styles.bottomBlock}>
