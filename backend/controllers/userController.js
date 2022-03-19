@@ -37,6 +37,11 @@ const createUser = asyncHandler(async (req, res) => {
         id: createdUser._id,
         name: createdUser.name,
         email: createdUser.email,
+        token: generateToken(createdUser._id),
+        cartItems: createdUser.cartItems,
+        wishlist: createdUser.wishlist,
+        addresses: createdUser.addresses,
+        image: createdUser.image,
       });
     } else {
       res.status(400);
