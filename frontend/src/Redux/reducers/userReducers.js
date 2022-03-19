@@ -16,6 +16,15 @@ import {
 
 export const loggedUserReducer = (state = {}, action) => {
   switch (action.type) {
+    case CREATE_USER_REQUEST: {
+      return { loading: true, user: {} };
+    }
+    case CREATE_USER_SUCCESS: {
+      return { loading: false, user: action.payload };
+    }
+    case CREATE_USER_FAIL: {
+      return { loading: false, error: action.payload };
+    }
     case LOGGED_USER_CHANGE_REQUEST: {
       return { loading: true, user: { ...state.user } };
     }
@@ -41,21 +50,7 @@ export const loggedUserReducer = (state = {}, action) => {
       return state;
   }
 };
-export const createUserReducer = (state = {}, action) => {
-  switch (action.type) {
-    case CREATE_USER_REQUEST: {
-      return { loading: true, user: {} };
-    }
-    case CREATE_USER_SUCCESS: {
-      return { loading: false, user: action.payload };
-    }
-    case CREATE_USER_FAIL: {
-      return { loading: false, error: action.payload };
-    }
-    default:
-      return state;
-  }
-};
+
 export const allUsersReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_ALL_USERS_REQUEST: {

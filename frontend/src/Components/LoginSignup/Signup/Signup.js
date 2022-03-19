@@ -16,7 +16,6 @@ const Signup = ({ open }) => {
   const navigate = useNavigate();
   const submitHandler = () => {
     dispatch(createUser(name, email, password));
-    dispatch(loginUser(email, password));
     navigate("/");
   };
 

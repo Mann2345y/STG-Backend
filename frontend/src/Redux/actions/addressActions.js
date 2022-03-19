@@ -25,7 +25,6 @@ export const getAddresses = (id) => async (dispatch) => {
       payload: data,
     });
   } catch (error) {
-    console.log(error);
     dispatch({
       type: GET_ADDRESSES_FAIL,
       payload: error,
