@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./CartsUserIn.module.css";
 import { AiOutlineArrowLeft as Back } from "react-icons/ai";
-import { HiOutlineCheck as Check } from "react-icons/hi";
+import { FiMoreHorizontal as More } from "react-icons/fi";
 import TabLayout from "../../../../Reusables/TabLayout";
 import Loader from "../../../../Reusables/Loader";
 import Message from "../../../../Reusables/Message";
@@ -28,7 +28,7 @@ const CartsUserIn = ({ tabsHandler }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          style={{ height: "inherit", width: "inherit", padding: "50px" }}
+          style={{ height: "inherit", width: "inherit", paddingTop: "70px" }}
         >
           <div className={styles.backButton} onClick={tabsHandler}>
             <Back size={24} />
@@ -59,7 +59,7 @@ const CartsUserIn = ({ tabsHandler }) => {
                               dispatch(addCartToCurrentUserCart(item._id));
                             }}
                           >
-                            <Check size={28} />
+                            <More size={28} />
                           </div>
                         </div>
                       </div>

@@ -1,0 +1,96 @@
+.wrapper {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  background: rgba(0, 0, 0, 0.9);
+  transform: translateX(-100vw);
+  transition: all 0.25s ease-in;
+}
+.innerWrapper {
+  height: 100vh;
+  width: 80vw;
+  background: #ff4433;
+  padding: 25px;
+}
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  height: 30px;
+  width: 30px;
+  border: 1px solid white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.searchWrapper {
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid white;
+}
+.searchWrapper input {
+  height: 50px;
+  width: 80%;
+  background: none;
+  color: white;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 400;
+  font-size: 1em;
+}
+.searchWrapper input::placeholder {
+  color: white;
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 400;
+  font-size: 1em;
+}
+.iconsWrapper {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+}
+.iconWrapper {
+  height: 100%;
+  width: 100px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+  color: white;
+}
+.iconText {
+  transition: all 0.2s ease-in;
+}
+.iconWrapper:hover > .iconText {
+  color: #ff4433;
+}
+.iconWrapper p {
+  font-size: 0.9em;
+}
+.iconWrapper i:hover {
+  color: #ff4433;
+}
+.icon {
+  font-size: 35px;
+  margin-bottom: 5px;
+}
+.links {
+  height: fit-content;
+  margin-top: 50px;
+  color: white;
+}
+.link {
+  height: 80px;
+  width: 100%;
+}
+@media (min-width: 769px) {
+  .wrapper {
+    display: none;
+  }
+}

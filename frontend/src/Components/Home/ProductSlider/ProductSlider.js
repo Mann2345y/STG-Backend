@@ -13,6 +13,22 @@ const Header = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-top: 100px;
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 1.5em;
+    }
+    h2 {
+      font-size: 1em;
+    }
+  }
+  @media (max-width: 420px) {
+    h1 {
+      font-size: 1em;
+    }
+    h2 {
+      font-size: 0.7em;
+    }
+  }
 `;
 
 const ProductSlider = () => {

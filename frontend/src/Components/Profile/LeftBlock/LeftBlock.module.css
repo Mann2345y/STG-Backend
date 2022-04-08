@@ -1,6 +1,6 @@
 .wrapper {
   height: 100%;
-  width: 20%;
+  width: 250px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -30,7 +30,7 @@
   height: 16.66%;
   width: 100%;
   display: flex;
-  padding-left: 50px;
+  padding-left: 30px;
   align-items: center;
   cursor: pointer;
   border: 1px solid #d3d3d3;

@@ -9,7 +9,6 @@ import { useNavigate } from "react-router";
 const SearchWrapper = styled.div`
   height: 50px;
   width: 350px;
-  margin-right: 200px;
   border: 2px solid #ff4433;
   display: flex;
   align-items: center;
@@ -40,7 +39,7 @@ const LowerNav = ({ openSearch, closeSearch }) => {
             <Link to="/products/page/1">
               <h4 className={styles.link}>Products</h4>
             </Link>
-            <h4 className={styles.link}>About Us</h4>
+            <h4 className={styles.link}>About </h4>
             <h4 className={styles.link}>Contacts</h4>
           </div>
           <SearchWrapper open={openSearch}>

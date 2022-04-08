@@ -4,7 +4,7 @@
   background: black;
 }
 .wrapper {
-  height: 50px;
+  height: 100%;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -37,4 +37,10 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .outerWrapper {
+    display: none;
+  }
 }

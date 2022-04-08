@@ -1,0 +1,82 @@
+.outerWrapper {
+  height: 650px;
+  width: 100%;
+  margin-top: 50px;
+  position: relative;
+}
+
+.upblockWrapper {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+.wrapper {
+  height: 100%;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.profileWrapper {
+  height: 250px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.profileImage {
+  height: 150px;
+  width: 150px;
+  background-size: 150px 150px;
+  margin-bottom: 20px;
+}
+.tabsWrapper {
+  height: calc(100% - 250px);
+  width: 100%;
+  padding: 25px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  gap: 25px;
+}
+.tab {
+  height: 80px;
+  width: 280px;
+  padding-left: 25px;
+  display: flex;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid #d3d3d3;
+}
+.lowblockWrapper {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+.pagesWrapper {
+  width: 100%;
+  background-color: white;
+  position: absolute;
+}
+@media (max-width: 768px) {
+  .outerWrapper {
+    height: 650px;
+  }
+  .tabsWrapper {
+    height: 400px;
+  }
+}
+@media (max-width: 638px) {
+  .outerWrapper {
+    height: 900px;
+  }
+  .tabsWrapper {
+    height: 650px;
+  }
+}

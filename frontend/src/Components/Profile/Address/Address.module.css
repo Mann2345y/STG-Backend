@@ -1,20 +1,135 @@
 .wrapper {
   height: 100%;
   width: 100%;
-  background: white;
 }
-.notFoundWrapper {
+.outerWrapper {
   height: 100%;
+  width: 100%;
+}
+.header {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.addressWrapper {
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.notFoundWrapper {
+  height: 600px;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.tabsWrapper {
-  height: 85%;
+
+.addresstabsWrapper {
+  height: fit-content;
+  width: 95%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin: 25px 0;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+  overflow: hidden;
+}
+
+.addAddressHeader {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  margin-left: 25px;
+}
+
+.addressTabWrapper {
+  height: 110px;
+  width: 90%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+}
+
+.rightblock {
+  display: flex;
+}
+.buttonWrapper {
+  height: 40px;
+  width: 60px;
+  font-size: 21px;
+  border: 1px solid #d3d3d3;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 25px;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.buttonWrapper:hover {
+  background: #ff4433;
+}
+.mobileWrapper {
+  height: fit-content;
   width: 100%;
-  overflow-y: auto;
-  padding-left: 10px;
-  margin-top: 25px;
+  margin-top: 50px;
+}
+.addAddressModal {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  z-index: 10;
+}
+.addressFormWrapper {
+  height: fit-content;
+  width: fit-content;
+  background-color: white;
+  padding: 25px;
+}
+@media (max-width: 1080px) {
+  .outerWrapper {
+    height: fit-content;
+    padding-top: 0px;
+  }
+  .addressWrapper {
+    padding: 0;
+    overflow-y: inherit;
+  }
+  .addresstabsWrapper {
+    width: 100%;
+  }
+  .addAddressHeader {
+    width: 100%;
+  }
+}
+@media (max-width: 600px) {
+  .addressTabWrapper {
+    height: 150px;
+    padding: 20px 0;
+    flex-direction: column;
+    align-items: baseline;
+  }
+  .buttonWrapper {
+    height: 30px;
+    width: 50px;
+    font-size: 18px;
+    margin-left: 0;
+    margin-right: 25px;
+  }
 }

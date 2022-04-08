@@ -3,7 +3,7 @@
   width: 35%;
   background: url("./bg1.jpg");
   background-repeat: no-repeat;
-  background-position: bottom bottom;
+  background-position: center center;
   background-size: cover;
 }
 
@@ -36,4 +36,29 @@
 }
 .active {
   background: rgba(0, 0, 0, 0.4);
+}
+@media (max-width: 768px) {
+  .wrapper {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    background: none;
+  }
+  .innerWrapper {
+    flex-direction: row;
+  }
+  .button {
+    height: 50px;
+    width: 50%;
+    margin: 0;
+    border-radius: 0%;
+    background: white;
+    color: black;
+  }
+  .button:hover {
+    background: #ff4433;
+  }
+  .active {
+    background: #ff4433;
+  }
 }

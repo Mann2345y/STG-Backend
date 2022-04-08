@@ -12,7 +12,7 @@ const OrderHistory = () => {
   const { loading, error, orders } = useSelector((state) => state.orderHistory);
   const navigate = useNavigate();
   return (
-    <>
+    <div className={styles.wrapper}>
       {loading ? (
         <div className={styles.Secondwrapper}>
           <Loader></Loader>
@@ -23,8 +23,15 @@ const OrderHistory = () => {
         </div>
       ) : orders.length > 0 ? (
         <>
-          <h2>Order History</h2>
-          <div className={styles.wrapper}>
+          <div className={styles.header}>
+            <h2>Order History</h2>
+            {window.innerWidth < 1080 && (
+              <Buttons clickHandler={() => navigate("/profile")}>
+                <h5>Back</h5>
+              </Buttons>
+            )}
+          </div>
+          <div className={styles.historyWrapper}>
             {orders.map((item, index) => {
               return <HistoryTab item={item} key={index} />;
             })}
@@ -37,7 +44,7 @@ const OrderHistory = () => {
           <div className={styles.buttonsWrapper}>
             <Buttons
               clickHandler={() => {
-                navigate("/products");
+                navigate("/products/page/1");
               }}
             >
               <h3>Place New Order</h3>
@@ -52,7 +59,7 @@ const OrderHistory = () => {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

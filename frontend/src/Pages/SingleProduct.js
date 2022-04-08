@@ -18,12 +18,13 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 50px;
+  @media (max-width: 768px) {
+    height: fit-content;
+    flex-direction: column;
+  }
 `;
 
 const SingleProduct = () => {
-  const { loading: wishlistLoading, error: wishlistError } = useSelector(
-    (state) => state.wishlist
-  );
   const { loading: productLoading, error: productError } = useSelector(
     (state) => state.singleProduct
   );
@@ -41,13 +42,10 @@ const SingleProduct = () => {
       <NavBar />
       <Container>
         <Wrapper>
-          {wishlistLoading || productLoading ? (
+          {productLoading ? (
             <Loader></Loader>
-          ) : wishlistError || productError ? (
-            <Message>
-              {wishlistError.message}
-              {productError.message}
-            </Message>
+          ) : productError ? (
+            <Message>{productError.message}</Message>
           ) : (
             <>
               <LeftBlock />

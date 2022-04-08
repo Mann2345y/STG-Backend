@@ -1,7 +1,8 @@
 .wrapper {
-  padding: 30px 50px;
+  padding: 20px;
   position: absolute;
-  left: 37%;
+  width: fit-content;
+  left: 0;
   background: white;
   transition: all 0.2s ease-in;
 }
@@ -20,5 +21,18 @@
 .inputBoxWrapper {
   height: 50px;
   width: 250px;
-  margin: 40px 0;
+  margin: 25px 0;
+}
+@media (max-width: 460px) {
+  .wrapper h1 {
+    font-size: 1.5em;
+  }
+  .wrapper p {
+    font-size: 0.8em;
+  }
+  .inputBoxWrapper {
+    height: fit-content;
+    width: fit-content;
+    margin: 20px 0;
+  }
 }

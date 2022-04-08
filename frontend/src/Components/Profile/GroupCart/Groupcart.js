@@ -15,6 +15,9 @@ const Wrapper = styled.div`
   height: 100%;
   width: 100%;
   position: relative;
+  @media (max-width: 1080px) {
+    height: 600px;
+  }
 `;
 
 const Motion = styled(motion.div)`

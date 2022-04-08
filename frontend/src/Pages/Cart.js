@@ -3,10 +3,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import NavBar from "../Reusables/NavBar/NavBar";
 import Container from "../Reusables/Container";
 import Footer from "../Reusables/Footer/Footer";
-import CartItems from "../Components/Cart/CartItems/CartItems";
-import AddressTab from "../Components/Cart/AddressTab/AddressTab";
 import styled from "styled-components";
 import Ordersummary from "../Components/Cart/OrderSummary/Ordersummary";
+import ItemsAddress from "../Components/Cart/ItemsAddress";
+import MobileCart from "../Components/Cart/MobileCart";
 
 const Wrapper = styled.div`
   height: 650px;
@@ -15,26 +15,34 @@ const Wrapper = styled.div`
     rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px;
   margin-top: 100px;
   position: relative;
+  @media (max-width: 1080px) {
+    height: auto;
+    margin-top: 20px;
+  }
+`;
+
+const Motion = styled(motion.div)`
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  @media (max-width: 1080px) {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
 `;
 
 const Cart = () => {
-  const [cartItemsActive, setCartItemsActive] = useState(true);
-  const [addressTabActive, setAddressTabActive] = useState(false);
+  const [itemsAddressActive, setItemsAddressActive] = useState(true);
   const [placeorderActive, setPlaceorderActive] = useState(false);
 
-  const cartItemsHandler = () => {
-    setCartItemsActive(true);
-    setAddressTabActive(false);
+  const ItemsAddressHandler = () => {
+    setItemsAddressActive(true);
     setPlaceorderActive(false);
   };
-  const addressTabHandler = () => {
-    setCartItemsActive(false);
-    setAddressTabActive(true);
-    setPlaceorderActive(false);
-  };
+
   const placeorderHandler = () => {
-    setCartItemsActive(false);
-    setAddressTabActive(false);
+    setItemsAddressActive(false);
     setPlaceorderActive(true);
   };
   return (
@@ -45,67 +53,33 @@ const Cart = () => {
     >
       <NavBar />
       <Container>
-        <Wrapper>
-          <AnimatePresence>
-            {cartItemsActive && (
-              <motion.div
-                key="cartitems"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                style={{
-                  position: "absolute",
-                  height: "95%",
-                  width: "95%",
-                  top: "2.5%",
-                  left: "2.5%",
-                }}
-              >
-                <CartItems addressTabHandler={addressTabHandler} />
-              </motion.div>
-            )}
-            {addressTabActive && (
-              <motion.div
-                key="addressTab"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                style={{
-                  position: "absolute",
-                  height: "95%",
-                  width: "95%",
-                  top: "2.5%",
-                  left: "2.5%",
-                }}
-              >
-                <AddressTab
-                  cartItemsHandler={cartItemsHandler}
-                  placeorderHandler={placeorderHandler}
-                />
-              </motion.div>
-            )}
-            {placeorderActive && (
-              <motion.div
-                key="placeorder"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                style={{
-                  position: "absolute",
-                  height: "95%",
-                  width: "95%",
-                  top: "2.5%",
-                  left: "2.5%",
-                }}
-              >
-                <Ordersummary
-                  addressTabHandler={addressTabHandler}
-                  cartItemsHandler={cartItemsHandler}
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </Wrapper>
+        {window.innerWidth > 1080 && (
+          <Wrapper>
+            <AnimatePresence>
+              {itemsAddressActive && (
+                <Motion
+                  key="cartitems"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <ItemsAddress placeorderHandler={placeorderHandler} />
+                </Motion>
+              )}
+              {placeorderActive && (
+                <Motion
+                  key="placeorder"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <Ordersummary ItemsAddressHandler={ItemsAddressHandler} />
+                </Motion>
+              )}
+            </AnimatePresence>
+          </Wrapper>
+        )}
+        {window.innerWidth <= 1080 && <MobileCart />}
       </Container>
       <Footer />
     </motion.div>

@@ -74,13 +74,11 @@ const CreateCart = ({ toggleHandler }) => {
             <div className={styles.header}>
               <h2>Update Your Cart</h2>
               <div className={styles.headerContent}>
-                <div className={styles.inputBoxWrapper}>
-                  <InputBox
-                    placeholder="Name For The New Cart"
-                    state={name}
-                    changeHandler={setName}
-                  />
-                </div>
+                <InputBox
+                  placeholder="Name For The New Cart"
+                  state={name}
+                  changeHandler={setName}
+                />
                 <Buttons clickHandler={updateCartnameHandler}>
                   <h4>Update Cartname</h4>
                 </Buttons>

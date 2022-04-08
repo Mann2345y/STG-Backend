@@ -1,7 +1,8 @@
 .wrapper {
-  padding: 30px 50px;
+  padding: 25px;
   position: absolute;
-  left: 37%;
+  width: fit-content;
+  left: 0;
   background: white;
   transition: all 0.2s ease-in;
 }
@@ -21,4 +22,17 @@
   height: 50px;
   width: 250px;
   margin: 40px 0;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    width: 100%;
+    left: 0;
+  }
+  .wrapper h1 {
+    font-size: 2em;
+  }
+  .wrapper p {
+    font-size: 0.8em;
+  }
 }

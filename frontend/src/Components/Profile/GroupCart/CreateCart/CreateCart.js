@@ -12,6 +12,8 @@ import {
   removeUserFromCurrentCart,
   emptyProductsFromNewCart,
   emptyUsersFromNewCart,
+  addProductInCurrentCart,
+  removeProductFromCurrentCart,
 } from "../../../../Redux/actions/groupcartActions";
 import Buttons from "../../../../Reusables/Buttons";
 import { AnimatePresence, motion } from "framer-motion";
@@ -23,28 +25,42 @@ const CreateCart = ({ tabsHandler }) => {
   const [name, setName] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [cartcreated, setCartCreated] = useState(false);
-  const [search, setSearch] = useState("");
-  const [results, setResults] = useState([]);
+  const [productsearch, setProductsearch] = useState("");
+  const [productresults, setProductresults] = useState([]);
+  const [usersearch, setUsersearch] = useState("");
+  const [userresults, setUserresults] = useState([]);
   const [showResults, setShowResults] = useState(false);
   const user = JSON.parse(localStorage.getItem("loggedUser"));
+  const { products: allproducts } = useSelector((state) => state.allProducts);
   const { users: allusers } = useSelector((state) => state.allUsers);
   const { products, users } = useSelector(
     (state) => state.groupcart.newCartState
   );
   const dispatch = useDispatch();
   useEffect(() => {
-    if (search.length > 0) {
-      setResults(
+    if (usersearch.length > 0) {
+      setUserresults(
         allusers.filter((item) => {
-          return item.name.includes(search);
+          return item.name.includes(usersearch);
         })
       );
       setShowResults(true);
     } else {
-      setResults([]);
+      setUserresults([]);
       setShowResults(true);
     }
-  }, [search, allusers, showResults]);
+    if (productsearch.length > 0) {
+      setProductresults(
+        allproducts.filter((item) => {
+          return item.name.includes(productsearch);
+        })
+      );
+      setShowResults(true);
+    } else {
+      setProductresults([]);
+      setShowResults(true);
+    }
+  }, [usersearch, allusers, showResults, productsearch, allproducts]);
   const createButtonHandler = () => {
     if (name === "") {
       setModalOpen(true);
@@ -57,7 +73,7 @@ const CreateCart = ({ tabsHandler }) => {
   };
   return (
     <AnimatePresence>
-      {modifyproduct ? (
+      {modifyproduct && window.innerWidth > 1080 ? (
         <motion.div
           key="modifyproduct"
           initial={{ opacity: 0 }}
@@ -146,31 +162,64 @@ const CreateCart = ({ tabsHandler }) => {
                 <div className={styles.header}>
                   <h2>Create A New Cart</h2>
                   <div className={styles.headerContent}>
-                    <div className={styles.inputBoxWrapper}>
-                      <InputBox
-                        placeholder="Name For The New Cart"
-                        state={name}
-                        changeHandler={setName}
-                      />
+                    <InputBox
+                      placeholder="Name For The New Cart"
+                      state={name}
+                      changeHandler={setName}
+                    />
+                    <div className={styles.headerbuttons}>
+                      <Buttons clickHandler={createButtonHandler}>
+                        <h4>Create Cart</h4>
+                      </Buttons>
+                      <Buttons clickHandler={tabsHandler}>
+                        <h4>Back</h4>
+                      </Buttons>
                     </div>
-                    <Buttons clickHandler={createButtonHandler}>
-                      <h4>Create Cart</h4>
-                    </Buttons>
-                    <Buttons clickHandler={tabsHandler}>
-                      <h4>Back</h4>
-                    </Buttons>
                   </div>
                 </div>
                 <div className={styles.content}>
                   <div className={styles.leftBlock}>
                     <div className={styles.leftBlockHeader}>
                       <h3>Products :</h3>
-                      {products.length > 0 && (
+                      {products.length > 0 && window.innerWidth > 1080 && (
                         <Buttons clickHandler={() => setModifyproduct(true)}>
                           <p>Modify Products</p>
                         </Buttons>
                       )}
                     </div>
+                    {window.innerWidth < 1080 && (
+                      <div
+                        className={styles.searchWrapper}
+                        style={{ top: "80px" }}
+                      >
+                        <div className={styles.inputBoxWrapper}>
+                          <InputBox
+                            placeholder="Search Product To Add"
+                            state={productsearch}
+                            changeHandler={setProductsearch}
+                          />
+                        </div>
+                        {productresults.length > 0 && showResults && (
+                          <div className={styles.resultsWrapper}>
+                            {productresults.map((item, index) => {
+                              return (
+                                <div
+                                  key={index}
+                                  className={styles.results}
+                                  onClick={() => {
+                                    dispatch(addProductInCurrentCart(item._id));
+                                    setShowResults(false);
+                                    setProductsearch("");
+                                  }}
+                                >
+                                  <h3 style={{ margin: "0" }}>{item.name}</h3>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </div>
+                    )}
                     {products.length > 0 ? (
                       <div className={styles.tabsWrapper}>
                         {products.map((item, index) => {
@@ -186,6 +235,18 @@ const CreateCart = ({ tabsHandler }) => {
                                 <div className={styles.textWrapper}>
                                   <h4>{item.name}</h4>
                                   <h5>By: - {item.brand}</h5>
+                                  {window.innerWidth < 1080 && (
+                                    <div
+                                      className={styles.deleteButton}
+                                      onClick={() =>
+                                        dispatch(
+                                          removeProductFromCurrentCart(item.id)
+                                        )
+                                      }
+                                    >
+                                      <Trash />
+                                    </div>
+                                  )}
                                 </div>
                               </div>
                             </TabLayout>
@@ -195,9 +256,11 @@ const CreateCart = ({ tabsHandler }) => {
                     ) : (
                       <div className={styles.noproductsWrapper}>
                         <h3>No Products Added</h3>
-                        <Buttons clickHandler={() => setModifyproduct(true)}>
-                          <p>Add Products</p>
-                        </Buttons>
+                        {window.innerWidth > 1080 && (
+                          <Buttons clickHandler={() => setModifyproduct(true)}>
+                            <p>Add Products</p>
+                          </Buttons>
+                        )}
                       </div>
                     )}
                   </div>
@@ -217,13 +280,13 @@ const CreateCart = ({ tabsHandler }) => {
                         <div className={styles.inputBoxWrapper}>
                           <InputBox
                             placeholder="Search User To Add"
-                            state={search}
-                            changeHandler={setSearch}
+                            state={usersearch}
+                            changeHandler={setUsersearch}
                           />
                         </div>
-                        {results.length > 0 && showResults && (
+                        {userresults.length > 0 && showResults && (
                           <div className={styles.resultsWrapper}>
-                            {results.map((item, index) => {
+                            {userresults.map((item, index) => {
                               return (
                                 <div
                                   key={index}
@@ -231,7 +294,7 @@ const CreateCart = ({ tabsHandler }) => {
                                   onClick={() => {
                                     dispatch(addUserInCurrentCart(item._id));
                                     setShowResults(false);
-                                    setSearch("");
+                                    setUsersearch("");
                                   }}
                                 >
                                   <h3 style={{ margin: "0" }}>{item.name}</h3>

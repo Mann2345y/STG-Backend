@@ -15,6 +15,10 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 50px;
+  @media (max-width: 1071px) {
+    width: 100%;
+  }
 `;
 
 const GalleryWrapper = styled.div`
@@ -25,17 +29,30 @@ const GalleryWrapper = styled.div`
   grid-gap: 10px;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-auto-rows: 430px;
-  a {
+  div {
     justify-self: end;
+  }
+  @media (max-width: 1071px) {
+    padding-left: 0;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    div {
+      justify-self: center;
+    }
+  }
+  @media (max-width: 730px) {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   }
 `;
 
 const SecondWrapper = styled.div`
-  height: fit-content;
+  height: 600px;
   width: calc(100% - 250px);
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: 1070px) {
+    width: 100%;
+  }
 `;
 
 const RightBlock = () => {

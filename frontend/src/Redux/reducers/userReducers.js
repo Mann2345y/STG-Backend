@@ -41,7 +41,7 @@ export const loggedUserReducer = (state = {}, action) => {
       return { loading: false, user: action.payload };
     }
     case LOGGED_USER_CHANGE_FAIL: {
-      return { loading: false, error: action.payload };
+      return { loading: false, error: action.payload, user: {} };
     }
     case LOGGED_USER_LOGOUT: {
       return { loading: false, user: {} };

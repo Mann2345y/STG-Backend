@@ -1,4 +1,4 @@
-.wrapper {
+.desktop {
   height: fit-content;
   width: 250px;
   position: sticky;
@@ -18,4 +18,40 @@
 }
 .radio {
   margin: 15px 0;
+}
+.mobile {
+  display: none;
+  position: sticky;
+  top: 150px;
+  padding: 20px;
+  background: white;
+  transition: all 0.2s ease-in;
+}
+.mobileHeader {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+}
+.filterButton {
+  height: 50px;
+  width: 50%;
+  border: 1px solid #d3d3d3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bottomButtons {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  margin: 20px auto;
+}
+@media (max-width: 1071px) {
+  .desktop {
+    display: none;
+  }
+  .mobile {
+    display: none;
+  }
 }

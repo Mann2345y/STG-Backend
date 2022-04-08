@@ -14,6 +14,9 @@ const Button = styled.button`
   &:hover {
     background: #ff4433;
   }
+  @media (max-width: 768px) {
+    padding: 10px 20px;
+  }
 `;
 
 const Buttons = (props) => {

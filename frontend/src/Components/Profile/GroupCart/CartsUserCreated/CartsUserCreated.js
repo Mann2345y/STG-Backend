@@ -41,7 +41,7 @@ const CartsUserCreated = ({ tabsHandler }) => {
             style={{
               height: "inherit",
               width: "inherit",
-              padding: "50px",
+              paddingTop: "70px",
             }}
           >
             <div className={styles.backButton} onClick={tabsHandler}>

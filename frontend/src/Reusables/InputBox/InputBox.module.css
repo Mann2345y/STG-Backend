@@ -1,7 +1,7 @@
 .inputWrapper {
   position: relative;
-  width: 100%;
-  height: 100%;
+  width: 250px;
+  height: 50px;
   font-family: "Josefin Sans", sans-serif;
 }
 .input {
@@ -16,15 +16,15 @@
   font-size: inherit;
   color: black;
   outline: none;
-  padding: 1.25rem;
+  padding: 10px 20px;
   background: none;
   transition: all 0.2s ease-in;
-  /* z-index: -5; */
 }
 .inputLabel {
   position: absolute;
-  left: 1rem;
-  top: 1rem;
+  left: 15px;
+  top: 20px;
+  font-size: 0.8em;
   padding: 0 0.5rem;
   color: black;
   cursor: text;
@@ -34,7 +34,22 @@
 }
 .input:focus ~ .inputLabel,
 .input:not(:placeholder-shown).input:not(:focus) ~ .inputLabel {
-  top: -0.5rem;
+  top: -10px;
   font-size: 0.8rem;
-  left: 0.8rem;
+  left: 10px;
+}
+
+@media (max-width: 768px) {
+  .inputWrapper {
+    height: 35px;
+    width: 180px;
+  }
+  .input {
+    font-size: 0.8rem;
+    border: 1px solid #ff4433;
+  }
+  .inputLabel {
+    font-size: 0.8em;
+    top: 12px;
+  }
 }

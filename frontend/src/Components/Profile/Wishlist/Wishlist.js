@@ -4,16 +4,25 @@ import WishlistTab from "./WishlistTab";
 import { useSelector } from "react-redux";
 import Loader from "../../../Reusables/Loader";
 import Message from "../../../Reusables/Message";
+import Buttons from "../../../Reusables/Buttons";
+import { useNavigate } from "react-router";
 
 const Wrapper = styled.div`
   height: 90%;
   width: 100%;
-  padding: 25px;
+  padding: 10px;
   overflow-y: auto;
 `;
 
-const OrderHistory = () => {
+const Header = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+`;
+
+const Wishlist = () => {
   const { loading, error, wishlist } = useSelector((state) => state.wishlist);
+  const navigate = useNavigate();
   return (
     <>
       {loading ? (
@@ -24,15 +33,22 @@ const OrderHistory = () => {
         <Wrapper>
           <Message>{error.message}</Message>
         </Wrapper>
-      ) : wishlist.length > 0 ? (
-        <>
-          <h2>Wishlisted Products</h2>
+      ) : wishlist && wishlist.length > 0 ? (
+        <div style={window.innerWidth < 1080 ? { marginTop: "25px" } : {}}>
+          <Header>
+            <h2>Wishlist</h2>
+            {window.innerWidth < 1080 && (
+              <Buttons clickHandler={() => navigate("/profile")}>
+                <h5>Back</h5>
+              </Buttons>
+            )}
+          </Header>
           <Wrapper>
             {wishlist.map((item, index) => {
               return <WishlistTab item={item} key={index} />;
             })}
           </Wrapper>
-        </>
+        </div>
       ) : (
         <Wrapper>
           <h3>No Wishlisted Items</h3>
@@ -42,4 +58,4 @@ const OrderHistory = () => {
   );
 };
 
-export default OrderHistory;
+export default Wishlist;

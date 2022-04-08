@@ -7,7 +7,13 @@ const CardWrapper = styled.div`
   width: 250px;
   box-shadow: rgba(0, 0, 0, 0.2) 2px 2px 15px;
   cursor: pointer;
-  margin: 0 25px;
+  @media (max-width: 1080px) {
+    height: 350px;
+    width: 200px;
+  }
+  @media (max-width: 730px) {
+    width: 150px;
+  }
 `;
 const CardImage = styled.div`
   height: 300px;
@@ -16,14 +22,32 @@ const CardImage = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+  @media (max-width: 1080px) {
+    height: 250px;
+    width: 200px;
+  }
+  @media (max-width: 730px) {
+    width: 150px;
+  }
 `;
 const CardTextSection = styled.div`
-  height: 150px;
+  height: fit-content;
   width: 250px;
   padding: 15px;
   h4,
   h6 {
     margin-bottom: 10px;
+  }
+  @media (max-width: 1080px) {
+    height: 100px;
+    width: 200px;
+    h4,
+    h6 {
+      margin-bottom: 6px;
+    }
+  }
+  @media (max-width: 730px) {
+    width: 150px;
   }
 `;
 const RatingPriceWrapper = styled.div`

@@ -23,3 +23,18 @@
   width: 100%;
   margin-top: 50px;
 }
+
+@media (max-width: 1080px) {
+  .wrapper {
+    margin: 100px 0;
+  }
+  .innerWrapper {
+    width: 100%;
+  }
+}
+@media (max-width: 576px) {
+  .header {
+    height: 200px;
+    flex-direction: column;
+  }
+}

@@ -13,6 +13,10 @@ const Wrapper = styled.div`
   margin-top: 50px;
   display: flex;
   justify-content: space-between;
+  @media (max-width: 1070px) {
+    flex-direction: column;
+    margin-top: 0;
+  }
 `;
 
 const AllProducts = ({ match }) => {

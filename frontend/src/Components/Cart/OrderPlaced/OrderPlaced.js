@@ -39,7 +39,7 @@ const OrderPlaced = () => {
           <Buttons clickHandler={() => navigate("/profile")}>
             <h4>Order History</h4>
           </Buttons>
-          <Buttons clickHandler={() => navigate("/products")}>
+          <Buttons clickHandler={() => navigate("/products/page/1")}>
             <h4>Place New Order</h4>
           </Buttons>
           <Buttons clickHandler={() => navigate("/")}>

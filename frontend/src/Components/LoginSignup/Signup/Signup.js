@@ -20,13 +20,7 @@ const Signup = ({ open }) => {
   };
 
   return (
-    <div
-      className={
-        open
-          ? `${styles.wrapper} ${styles.open}`
-          : `${styles.wrapper} ${styles.close}`
-      }
-    >
+    <div className={styles.wrapper}>
       <h1>Welcome to Shop On The Go</h1>
       <p>
         Sign up with your credentials <br /> to begin your journey with us
@@ -45,14 +39,12 @@ const Signup = ({ open }) => {
         />
       </div>
       <div className={styles.inputBoxWrapper}>
-        {" "}
         <InputBox
           placeholder="confirm password"
           state={confEmail}
           changeHandler={setConfEmail}
         />
       </div>
-
       <Buttons clickHandler={submitHandler}>
         <h4 style={{ fontWeight: "600" }}>Sign Up</h4>
       </Buttons>

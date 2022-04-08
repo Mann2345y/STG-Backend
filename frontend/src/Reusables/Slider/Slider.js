@@ -31,31 +31,63 @@ const Slider = () => {
   };
 
   return (
-    <div className={styles.container}>
-      {loading ? (
-        <Loader></Loader>
-      ) : error ? (
-        <Message>{error.message}</Message>
-      ) : products.length > 0 ? (
+    <>
+      <div className={styles.container}>
+        {loading ? (
+          <Loader></Loader>
+        ) : error ? (
+          <Message>{error.message}</Message>
+        ) : products.length > 0 ? (
+          <>
+            <div className={styles.arrow} onClick={scrollLeft}>
+              <AiOutlineArrowLeft size={18} />
+            </div>
+            <div className={styles.item_container} ref={listRef}>
+              {products.map((product, index) => {
+                return (
+                  <div className={styles.cardWrapper} key={index}>
+                    <Card product={product} key={index} />
+                  </div>
+                );
+              })}
+            </div>
+            <div className={styles.arrow} onClick={scrollRight}>
+              <AiOutlineArrowRight size={18} />
+            </div>
+          </>
+        ) : (
+          <>
+            <h3>No Products Found</h3>
+          </>
+        )}
+      </div>
+      {products.length > 0 ? (
         <>
-          <div className={styles.arrow} onClick={scrollLeft}>
-            <AiOutlineArrowLeft size={18} />
-          </div>
-          <div className={styles.item_container} ref={listRef}>
-            {products.map((product, index) => {
-              return <Card product={product} key={index} />;
-            })}
-          </div>
-          <div className={styles.arrow} onClick={scrollRight}>
-            <AiOutlineArrowRight size={18} />
+          <div className={styles.mobileGallery}>
+            <div className={styles.cardWrapper}>
+              <Card product={products[0]} />
+            </div>
+            <div className={styles.cardWrapper}>
+              <Card product={products[1]} />
+            </div>{" "}
+            <div className={styles.cardWrapper}>
+              <Card product={products[2]} />
+            </div>
+            <div className={styles.cardWrapper}>
+              <Card product={products[3]} />
+            </div>{" "}
+            <div className={styles.cardWrapper}>
+              <Card product={products[4]} />
+            </div>
+            <div className={styles.cardWrapper}>
+              <Card product={products[5]} />
+            </div>{" "}
           </div>
         </>
       ) : (
-        <>
-          <h3>No Products Found</h3>
-        </>
+        <></>
       )}
-    </div>
+    </>
   );
 };
 

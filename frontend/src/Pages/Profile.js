@@ -6,6 +6,7 @@ import NavBar from "../Reusables/NavBar/NavBar";
 import Footer from "../Reusables/Footer/Footer";
 import LeftBlock from "../Components/Profile/LeftBlock/LeftBlock";
 import RightBlock from "../Components/Profile/RightBlock/RightBlock";
+import MobileProfileNav from "../Components/MobileProfile/MobileProfileNav";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getOrderHistory } from "../Redux/actions/orderActions";
@@ -20,14 +21,14 @@ const Wrapper = styled.div`
   display: flex;
 `;
 
-const Profile = () => {
+const Profile = ({ setProfiletab }) => {
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("loggedUser"));
   useEffect(() => {
     dispatch(getOrderHistory(user.id));
     dispatch(getAllUsers());
   }, [dispatch, user.id]);
-
+  const [width] = useState(window.innerWidth);
   const [profileEditActive, setProfileEditActive] = useState(true);
   const [addressEditActive, setAddressEditActive] = useState(false);
   const [orderHistoryActive, setOrderHistoryActive] = useState(false);
@@ -75,32 +76,45 @@ const Profile = () => {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-    >
+    <>
       <NavBar />
-      <Container>
-        <Wrapper>
-          <LeftBlock
-            profileHandler={profileHandler}
-            addressHandler={addressHandler}
-            orderhistoryHandler={orderhistoryHandler}
-            wishlistHandler={wishlistHandler}
-            groupcartHandler={groupcartHandler}
-          />
-          <RightBlock
-            profileEditActive={profileEditActive}
-            addressEditActive={addressEditActive}
-            orderHistoryActive={orderHistoryActive}
-            wishlistActive={wishlistActive}
-            groupcartActive={groupcartActive}
-          />
-        </Wrapper>
-      </Container>
+      {width > 1080 && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <Container>
+            <Wrapper>
+              <LeftBlock
+                profileHandler={profileHandler}
+                addressHandler={addressHandler}
+                orderhistoryHandler={orderhistoryHandler}
+                wishlistHandler={wishlistHandler}
+                groupcartHandler={groupcartHandler}
+              />
+              <RightBlock
+                profileEditActive={profileEditActive}
+                addressEditActive={addressEditActive}
+                orderHistoryActive={orderHistoryActive}
+                wishlistActive={wishlistActive}
+                groupcartActive={groupcartActive}
+              />
+            </Wrapper>
+          </Container>
+        </motion.div>
+      )}
+      {width <= 1080 && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <MobileProfileNav setProfiletab={setProfiletab} />
+        </motion.div>
+      )}
       <Footer />
-    </motion.div>
+    </>
   );
 };
 

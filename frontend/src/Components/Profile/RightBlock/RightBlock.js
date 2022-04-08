@@ -9,7 +9,7 @@ import Groupcart from "../GroupCart/Groupcart";
 
 const Wrapper = styled.div`
   height: 100%;
-  width: 80%;
+  width: calc(100% - 250px);
   position: relative;
   border: 1px solid #d3d3d3;
 `;
@@ -33,7 +33,6 @@ const RightBlock = ({
             style={{
               height: "100%",
               width: "100%",
-              padding: "25px",
               position: "absolute",
             }}
           >

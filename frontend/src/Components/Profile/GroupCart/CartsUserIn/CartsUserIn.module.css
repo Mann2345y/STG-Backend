@@ -4,21 +4,17 @@
 }
 .backButton {
   height: 35px;
-  margin-bottom: 20px;
   width: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
   position: absolute;
-  top: 0;
+  top: 10px;
   left: 0;
   background: rgb(230, 100, 100);
 }
-.contentBox {
-  height: 100%;
-  width: 100%;
-}
+
 .tabs {
   height: 90%;
   width: 100%;
@@ -41,7 +37,7 @@
 }
 .buttonWrapper {
   height: 100%;
-  width: 150px;
+  width: fit-content;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -55,4 +51,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media (max-width: 1080px) {
 }

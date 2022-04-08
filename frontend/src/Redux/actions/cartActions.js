@@ -84,7 +84,7 @@ export const removeCartItem = (userId, productId) => async (dispatch) => {
 };
 
 export const addAddressInCart = (addressId) => async (dispatch) => {
-  localStorage.setItem(addressId, JSON.stringify(addressId));
+  localStorage.setItem("addressId", JSON.stringify(addressId));
   dispatch({
     type: CART_ADD_ADDRESS,
     payload: addressId,

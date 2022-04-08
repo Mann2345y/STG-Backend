@@ -15,3 +15,9 @@
   align-items: center;
   cursor: pointer;
 }
+
+@media (max-width: 1080px) {
+  .tabsWrapper {
+    width: 250px;
+  }
+}

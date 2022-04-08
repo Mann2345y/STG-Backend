@@ -11,7 +11,7 @@
 .icons {
   height: 100%;
   display: flex;
-  margin-right: 25px;
+  /* margin-right: 25px; */
 }
 .iconWrapper {
   height: 100%;
@@ -19,7 +19,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease-in;
@@ -30,7 +30,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
 }
 .iconText {
   transition: all 0.2s ease-in;
@@ -51,10 +51,10 @@
 .hoverBox {
   height: 100px;
   width: 100%;
-  margin-top: 15px;
   background: #ff4433;
   position: absolute;
-  top: 75%;
+  top: 85%;
+  left: 34%;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .innerHoverBox {
@@ -98,4 +98,31 @@
   transform-origin: top;
   transition: all 0.15s ease-in-out;
   z-index: 1;
+}
+.hammenu {
+  display: none;
+}
+@media (max-width: 768px) {
+  .wrapper {
+    justify-content: left;
+  }
+  .icons {
+    display: none;
+  }
+  .hammenu {
+    display: block;
+    height: 35px;
+    width: 35px;
+    border: 1px solid rgb(150, 150, 150);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 1px 5px;
+    margin-right: 25px;
+    cursor: pointer;
+  }
+  .logo {
+    font-size: 1.5em;
+  }
 }

@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Container from "../../../Reusables/Container";
 import styles from "./Features.module.css";
 import { FaOpencart, FaMoneyCheck } from "react-icons/fa";
 import { GiHanger } from "react-icons/gi";
 
 const Features = () => {
+  const [width, setWidth] = useState();
+  useEffect(() => {
+    setWidth(window.innerWidth);
+  }, []);
   return (
     <Container>
       <div className={styles.wrapper}>
@@ -19,7 +23,7 @@ const Features = () => {
           <div>
             <div className={styles.tabWrapper}>
               <div className={styles.iconWrapper}>
-                <FaOpencart size={35} />
+                <FaOpencart size={width > 1366 ? 35 : width > 475 ? 28 : 21} />
               </div>
               <div className={styles.text}>
                 <h3>Group Cart</h3>
@@ -31,8 +35,7 @@ const Features = () => {
             </div>
             <div className={styles.tabWrapper}>
               <div className={styles.iconWrapper}>
-                {" "}
-                <GiHanger size={42} />
+                <GiHanger size={width > 1366 ? 35 : width > 475 ? 28 : 21} />
               </div>
               <div className={styles.text}>
                 <h3>Virtual Trial Room</h3>
@@ -43,7 +46,9 @@ const Features = () => {
             </div>
             <div className={styles.tabWrapper}>
               <div className={styles.iconWrapper}>
-                <FaMoneyCheck size={35} />
+                <FaMoneyCheck
+                  size={width > 1366 ? 35 : width > 475 ? 28 : 18}
+                />
               </div>
               <div className={styles.text}>
                 <h3>Paypal Integration</h3>

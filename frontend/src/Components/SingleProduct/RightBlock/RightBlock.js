@@ -5,7 +5,7 @@ import {
   AiOutlineMinus,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
-import Buttons from "../../../Reusables/Buttons";
+import { BsSuitHeartFill, BsSuitHeart } from "react-icons/bs";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaOpencart } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
@@ -15,10 +15,15 @@ import {
   addProductInCart,
   addProductInCurrentCart,
 } from "../../../Redux/actions/groupcartActions";
+import {
+  removeWishlist,
+  addWishlist,
+} from "../../../Redux/actions/wishlistActions";
 
 const RightBlock = () => {
   const user = JSON.parse(localStorage.getItem("loggedUser"));
   const [openDropdown, setOpenDropdown] = useState(false);
+  const [toggle, setToggle] = useState(false);
   const [qty, setQty] = useState(1);
   const { product } = useSelector((state) => state.singleProduct);
   const { cartsOfUser, cartsUserIn } = useSelector((state) => state.groupcart);
@@ -72,68 +77,101 @@ const RightBlock = () => {
         </div>
       </div>
       <div className={styles.buttonsWrapper}>
-        <Buttons clickHandler={addCartHandler}>
-          <AiOutlineShoppingCart size={28} />
-          <h3 style={{ marginLeft: "10px" }}>Buy Now</h3>
-        </Buttons>
-        <div
-          className={styles.groupcartWrapper}
-          onMouseEnter={() => setOpenDropdown(true)}
-          onMouseLeave={() => setOpenDropdown(false)}
-        >
-          <Buttons>
-            <FaOpencart size={28} />
-            <h3 style={{ marginLeft: "10px" }}>Add To Group Cart</h3>
-          </Buttons>
-          <AnimatePresence>
-            {openDropdown && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className={styles.selectCart}
-              >
-                <div
-                  className={styles.tab}
-                  onClick={() => {
-                    dispatch(addProductInCurrentCart(product._id));
-                    navigate("/products/page/1");
-                  }}
-                >
-                  <h5>Current Cart</h5>
-                </div>
-                {cartsOfUser.map((item, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className={styles.tab}
-                      onClick={() => {
-                        dispatch(addProductInCart(item._id, product._id));
-                        navigate("/profile");
-                      }}
-                    >
-                      <h5>{item.cartname}</h5>
-                    </div>
-                  );
-                })}
-                {cartsUserIn.map((item, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className={styles.tab}
-                      onClick={() => {
-                        dispatch(addProductInCart(item._id, product._id));
-                        navigate("/profile");
-                      }}
-                    >
-                      <h5>{item.cartname}</h5>
-                    </div>
-                  );
-                })}
-              </motion.div>
-            )}
-          </AnimatePresence>
+        <div className={styles.buttons} onClick={addCartHandler}>
+          <div className={styles.buttonsIconsWrapper}>
+            <AiOutlineShoppingCart size={21} />
+          </div>
+          <h5 style={{ marginLeft: "10px" }}>Buy Now</h5>
         </div>
+        <div className={styles.buttons}>
+          <div
+            onClick={() => {
+              if (!user) {
+                navigate("/login");
+              } else {
+                setToggle(!toggle);
+                if (toggle) {
+                  dispatch(removeWishlist(user.id, product._id));
+                } else {
+                  dispatch(addWishlist(user.id, product._id));
+                }
+              }
+            }}
+            className={styles.buttonsIconsWrapper}
+          >
+            {toggle ? (
+              <BsSuitHeartFill
+                size={21}
+                className={styles.active}
+              ></BsSuitHeartFill>
+            ) : (
+              <BsSuitHeart size={21}></BsSuitHeart>
+            )}
+          </div>
+          <h5>Wishlist</h5>
+        </div>
+        {user && (
+          <div
+            className={styles.groupcartWrapper}
+            onMouseEnter={() => setOpenDropdown(true)}
+            onMouseLeave={() => setOpenDropdown(false)}
+          >
+            <div className={styles.buttons}>
+              <div className={styles.buttonsIconsWrapper}>
+                <FaOpencart size={21} />
+              </div>
+              <h5 style={{ marginLeft: "10px" }}>Add To Group Cart</h5>
+            </div>
+            <AnimatePresence>
+              {openDropdown && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className={styles.selectCart}
+                >
+                  <div
+                    className={styles.tab}
+                    onClick={() => {
+                      dispatch(addProductInCurrentCart(product._id));
+                      navigate("/products/page/1");
+                    }}
+                  >
+                    <h5>Current Cart</h5>
+                  </div>
+                  {cartsOfUser.map((item, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className={styles.tab}
+                        onClick={() => {
+                          dispatch(addProductInCart(item._id, product._id));
+                          navigate("/profile");
+                        }}
+                      >
+                        <h5>{item.cartname}</h5>
+                      </div>
+                    );
+                  })}
+                  {cartsUserIn.map((item, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className={styles.tab}
+                        onClick={() => {
+                          dispatch(addProductInCart(item._id, product._id));
+                          navigate("/profile");
+                        }}
+                      >
+                        <h5>{item.cartname}</h5>
+                      </div>
+                    );
+                  })}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        )}
       </div>
     </div>
   );

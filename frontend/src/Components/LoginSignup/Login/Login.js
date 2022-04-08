@@ -6,23 +6,18 @@ import Buttons from "../../../Reusables/Buttons";
 import InputBox from "../../../Reusables/InputBox/InputBox";
 import { loginUser } from "../../../Redux/actions/userActions";
 
-const Login = ({ open }) => {
+const Login = ({ open, setShowModal }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const submitHandler = () => {
     dispatch(loginUser(email, password));
+    setShowModal(true);
     navigate("/");
   };
   return (
-    <div
-      className={
-        open
-          ? `${styles.wrapper} ${styles.open}`
-          : `${styles.wrapper} ${styles.close}`
-      }
-    >
+    <div className={styles.wrapper}>
       <h1>Welcome Back !</h1>
       <p>
         Login with your credentials <br /> to continue your journey with us

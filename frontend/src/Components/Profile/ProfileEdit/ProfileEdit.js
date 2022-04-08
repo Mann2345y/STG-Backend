@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { BiArrowBack as Back } from "react-icons/bi";
 import styles from "./ProfileEdit.module.css";
 import InputBox from "../../../Reusables/InputBox/InputBox";
 import Buttons from "../../../Reusables/Buttons";
 import { updateLoggedUser } from "../../../Redux/actions/userActions";
+import { useNavigate } from "react-router";
 
-const ProfileEdit = () => {
+const ProfileEdit = ({ tabsHandler }) => {
+  const navigate = useNavigate();
   const { user } = useSelector((state) => state.loggedUser);
   const { id } = JSON.parse(localStorage.getItem("loggedUser"));
   const dispatch = useDispatch();
@@ -22,27 +25,32 @@ const ProfileEdit = () => {
         <div className={styles.formWrapper}>
           <div className={styles.inputWrapper}>
             <h4>Name : </h4>
-            <div className={styles.inputBoxWrapper}>
-              <InputBox state={name} changeHandler={setName} />
-            </div>
+            <InputBox state={name} changeHandler={setName} />
           </div>
           <div className={styles.inputWrapper}>
             <h4>Email : </h4>
-            <div className={styles.inputBoxWrapper}>
-              <InputBox state={email} changeHandler={setEmail} />
-            </div>
+            <InputBox state={email} changeHandler={setEmail} />
           </div>
           <div className={styles.inputWrapper}>
             <h4>Password : </h4>
-            <div className={styles.inputBoxWrapper}>
-              <InputBox state={password} changeHandler={setPassword} />
-            </div>
+            <InputBox state={password} changeHandler={setPassword} />
           </div>
-
-          <div style={{ margin: "30px 0" }}>
+          <div className={styles.profilebuttons}>
             <Buttons clickHandler={UpdateHandler}>
               <h4>Save Changes</h4>
             </Buttons>
+            <div className={styles.backbutton}>
+              {window.innerWidth > 1080 && (
+                <Buttons clickHandler={tabsHandler}>
+                  <h4>Back</h4>
+                </Buttons>
+              )}
+              {window.innerWidth < 1080 && (
+                <Buttons clickHandler={() => navigate("/profile")}>
+                  <h4>Back</h4>
+                </Buttons>
+              )}
+            </div>
           </div>
         </div>
       </div>

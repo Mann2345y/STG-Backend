@@ -1,22 +1,23 @@
 .wrapper {
   height: 100%;
   width: 100%;
-  background: white;
+  background-color: white;
+  position: relative;
+  padding: 30px;
 }
 .formWrapper {
   margin-top: 25px;
 }
 .inputWrapper {
-  width: 450px;
+  width: 400px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 20px 0;
+  margin: 40px 0;
 }
-.inputBoxWrapper {
-  height: 50px;
-  width: 250px;
-  margin: 0 30px;
+.inputWrapper h4 {
+  font-size: 1em;
+  font-weight: 600;
 }
 .open {
   opacity: 1;
@@ -52,4 +53,36 @@
   align-items: center;
   cursor: pointer;
   padding-left: 20px;
+}
+.profilebuttons {
+  max-width: 300px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+.backbutton {
+  display: none;
+}
+@media (max-width: 1080px) {
+  .wrapper {
+    height: fit-content;
+    padding: 25px 0 0 0;
+  }
+  .backbutton {
+    display: block;
+  }
+}
+@media (max-width: 768px) {
+  .inputWrapper {
+    width: 320px;
+  }
+}
+
+@media (max-width: 320px) {
+  .inputWrapper h4 {
+    font-size: 0.7em;
+  }
+  .inputWrapper {
+    width: 250px;
+  }
 }

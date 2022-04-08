@@ -1,13 +1,11 @@
 .wrapper {
   height: fit-content;
-  width: 48%;
+  width: 450px;
 }
 .image {
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center center;
   height: 700px;
   width: 100%;
+  position: relative;
 }
 
 .iconActive {
@@ -32,5 +30,19 @@
   }
   100% {
     transform: scale(1);
+  }
+}
+@media (max-width: 936px) {
+  .wrapper {
+    height: 600px;
+    width: 350px;
+  }
+  .image {
+    height: 600px;
+  }
+}
+@media (max-width: 768px) {
+  .wrapper {
+    width: 100%;
   }
 }
