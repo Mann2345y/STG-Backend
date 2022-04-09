@@ -47,14 +47,22 @@ const OrderHistory = () => {
                 navigate("/products/page/1");
               }}
             >
-              <h3>Place New Order</h3>
+              {window.innerWidth > 1080 ? (
+                <h3>Place New Order</h3>
+              ) : (
+                <h5>Place New Order</h5>
+              )}
             </Buttons>
             <Buttons
               clickHandler={() => {
                 navigate("/");
               }}
             >
-              <h3>Back To Home</h3>
+              {window.innerWidth > 1080 ? (
+                <h3>Back To Home</h3>
+              ) : (
+                <h5>Back To Home</h5>
+              )}
             </Buttons>
           </div>
         </div>

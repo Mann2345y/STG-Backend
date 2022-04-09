@@ -30,9 +30,6 @@ const AddressTab = ({ tabsHandler, width }) => {
         <div className={styles.outerWrapper}>
           <div className={styles.header}>
             <h2>Addresses</h2>
-            <Buttons clickHandler={tabsHandler}>
-              <h5>Back</h5>
-            </Buttons>
           </div>
           <AnimatePresence>
             {toggleEdit ? (
@@ -60,6 +57,8 @@ const AddressTab = ({ tabsHandler, width }) => {
                   height: "85%",
                   width: "100%",
                   position: "absolute",
+                  left: "0",
+                  padding: "25px",
                   marginTop: "20px",
                 }}
               >

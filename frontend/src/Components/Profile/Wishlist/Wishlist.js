@@ -8,10 +8,13 @@ import Buttons from "../../../Reusables/Buttons";
 import { useNavigate } from "react-router";
 
 const Wrapper = styled.div`
-  height: 90%;
+  height: 550px;
   width: 100%;
-  padding: 10px;
+  padding: 10px 25px 10px 10px;
   overflow-y: auto;
+  @media (max-width: 1080px) {
+    height: fit-content;
+  }
 `;
 
 const Header = styled.div`

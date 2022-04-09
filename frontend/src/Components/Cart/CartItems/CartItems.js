@@ -27,7 +27,7 @@ const NotFoundWrapper = styled.div`
   }
 `;
 const NotFoundButtons = styled.div`
-  width: 400px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   margin-top: 50px;
@@ -156,14 +156,22 @@ const CartItems = ({ addressTabHandler }) => {
       ) : cartItems.length <= 0 && window.innerWidth <= 1080 ? (
         <>
           <NotFoundWrapper>
-            <Icon size={140} />
+            <Icon size={window.innerWidth < 1080 ? 140 : 100} />
             <h2>No Products Found</h2>
             <NotFoundButtons>
               <Buttons clickHandler={() => navigate("/products/page/1")}>
-                <h3>Browse Products</h3>
+                {window.innerWidth > 1080 ? (
+                  <h3>Browse Products</h3>
+                ) : (
+                  <h4>Browse Products</h4>
+                )}
               </Buttons>
               <Buttons clickHandler={() => navigate("/")}>
-                <h3>Go To Home</h3>
+                {window.innerWidth > 1080 ? (
+                  <h3>Go To Home</h3>
+                ) : (
+                  <h4>Go To Home</h4>
+                )}
               </Buttons>
             </NotFoundButtons>
           </NotFoundWrapper>

@@ -56,7 +56,7 @@ const MobileNav = ({ openmenu, closeMenuHandler }) => {
             <AiOutlineShoppingCart className={styles.icon} />
             <p>Cart</p>
           </div>
-          {user === {} ? (
+          {Object.keys(user).length !== 0 ? (
             <div
               className={styles.iconWrapper}
               onClick={() => {

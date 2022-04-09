@@ -15,7 +15,7 @@ const Button = styled.button`
     background: #ff4433;
   }
   @media (max-width: 768px) {
-    padding: 10px 20px;
+    padding: 10px;
   }
 `;
 
