@@ -5,6 +5,7 @@ import {
   AiOutlineMinus,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
+import { GiHanger } from "react-icons/gi";
 import { BsSuitHeartFill, BsSuitHeart } from "react-icons/bs";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaOpencart } from "react-icons/fa";
@@ -116,11 +117,11 @@ const RightBlock = () => {
             onMouseEnter={() => setOpenDropdown(true)}
             onMouseLeave={() => setOpenDropdown(false)}
           >
-            <div className={styles.buttons}>
+            <div className={styles.buttons} style={{ width: "100%" }}>
               <div className={styles.buttonsIconsWrapper}>
                 <FaOpencart size={21} />
               </div>
-              <h5 style={{ marginLeft: "10px" }}>Add To Group Cart</h5>
+              <h5 style={{ marginLeft: "10px" }}>Group Cart</h5>
             </div>
             <AnimatePresence>
               {openDropdown && (
@@ -172,6 +173,12 @@ const RightBlock = () => {
             </AnimatePresence>
           </div>
         )}
+        <div className={styles.buttons}>
+          <div className={styles.buttonsIconsWrapper}>
+            <GiHanger size={21} />
+          </div>
+          <h5 style={{ marginLeft: "10px" }}>Trial Room</h5>
+        </div>
       </div>
     </div>
   );

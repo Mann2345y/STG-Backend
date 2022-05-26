@@ -5,6 +5,7 @@ import SingleProduct from "./Pages/SingleProduct";
 import AllProducts from "./Pages/AllProducts";
 import Cart from "./Pages/Cart";
 import Profile from "./Pages/Profile";
+import Trialroom from "./Pages/Trialroom/Trialroom";
 import MobileProfile from "./Pages/MobileProfile";
 import { Routes, Route } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
@@ -64,6 +65,7 @@ function App() {
             path="/products/:keyword/page/:pageNumber"
             element={<AllProducts />}
           />
+          <Route path="/trialroom" element={<Trialroom />} />
         </Routes>
       </ScrollToTop>
     </AnimatePresence>

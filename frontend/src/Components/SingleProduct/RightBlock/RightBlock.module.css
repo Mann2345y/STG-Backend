@@ -71,7 +71,9 @@
 }
 .groupcartWrapper {
   height: fit-content;
-  width: 200px;
+  width: 150px;
+  margin-right: 25px;
+  cursor: pointer;
 }
 .selectCart {
   height: 100px;
@@ -89,7 +91,6 @@
   transition: all 0.2s ease-in;
 }
 .tab:hover {
-  margin-left: 100px;
   background: red;
 }
 .buttons {
@@ -101,6 +102,7 @@
   align-items: center;
   text-align: center;
   margin-right: 25px;
+  cursor: pointer;
 }
 .buttonsIconsWrapper {
   height: 40px;
