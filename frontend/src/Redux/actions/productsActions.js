@@ -6,6 +6,9 @@ import {
   SINGLE_PRODUCT_REQUEST,
   SINGLE_PRODUCT_SUCCESS,
   SINGLE_PRODUCT_FAIL,
+  GET_ALL_PRODUCTS_FAIL,
+  GET_ALL_PRODUCTS_REQUEST,
+  GET_ALL_PRODUCTS_SUCCESS,
 } from "../constants/productsConstants";
 
 export const getAllProducts =
@@ -32,6 +35,28 @@ export const getAllProducts =
       });
     }
   };
+
+export const getTotalProducts = () => async (dispatch) => {
+  try {
+    dispatch({
+      type: GET_ALL_PRODUCTS_REQUEST,
+    });
+    const { data } = await axiosInstance.get("/api/products/getall");
+    console.log(data);
+    dispatch({
+      type: GET_ALL_PRODUCTS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_ALL_PRODUCTS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
 export const getSingleProduct = (id) => async (dispatch) => {
   try {
     dispatch({

@@ -4,6 +4,9 @@ import { AiFillCaretDown } from "react-icons/ai";
 import NavBar from "../../Reusables/NavBar/NavBar";
 import Footer from "../../Reusables/Footer/Footer";
 import { imagepaths } from "./imagepaths";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { addCartItem } from "../../Redux/actions/cartActions";
 
 const Wrapper = styled.div`
   height: 600px;
@@ -98,6 +101,11 @@ const Image = styled.div`
   background-position: center center;
 `;
 const Trialroom = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.loggedUser);
+  const qty = 1;
+  const { products } = useSelector((state) => state.totalProducts);
   const [opendressdrop, setOpendressdrop] = useState(false);
   const [openmodeldrop, setOpenmodeldrop] = useState(false);
   const [dressimage, setDressimage] = useState("");
@@ -105,6 +113,7 @@ const Trialroom = () => {
   const [dressname, setDressname] = useState("");
   const [modelname, setModelname] = useState("");
   const [resultimage, setResultimage] = useState("");
+  const [currentproduct, setCurrentproduct] = useState(null);
 
   useEffect(() => {
     if (dressimage.includes("dress1") && modelimage.includes("model1")) {
@@ -131,7 +140,25 @@ const Trialroom = () => {
     if (dressimage.includes("dress4") && modelimage.includes("model2")) {
       setResultimage(imagepaths[2].results.result8);
     }
+    if (dressimage.includes("dress5") && modelimage.includes("model1")) {
+      setResultimage(imagepaths[2].results.result9);
+    }
+    if (dressimage.includes("dress5") && modelimage.includes("model2")) {
+      setResultimage(imagepaths[2].results.result10);
+    }
   }, [dressimage, modelimage]);
+
+  useEffect(() => {
+    if (products.length > 0) {
+      const product = products.find((item) => item.image === dressimage);
+      setCurrentproduct(product);
+      console.log(currentproduct);
+    }
+  }, [dressimage]);
+
+  const navigatehandler = () => {
+    navigate(`/singleproduct/${currentproduct._id}`);
+  };
   return (
     <>
       <NavBar />
@@ -174,7 +201,7 @@ const Trialroom = () => {
         <FlexBlock>
           <DropdownWrapper>
             <DropdownHeader onClick={() => setOpenmodeldrop(!openmodeldrop)}>
-              {dressimage === "" ? <h3>Select Model</h3> : <h3>{modelname}</h3>}
+              {modelimage === "" ? <h3>Select Model</h3> : <h3>{modelname}</h3>}
               <DropdownIcon size={28} open={openmodeldrop} />
             </DropdownHeader>
             <DropdownContent open={openmodeldrop}>
@@ -213,7 +240,10 @@ const Trialroom = () => {
             ) : (
               <h3> No Image Selected</h3>
             )}
-          </ImageBlock>{" "}
+          </ImageBlock>
+          <ResetButton onClick={() => navigatehandler()}>
+            <h3>Check Product</h3>
+          </ResetButton>
         </FlexBlock>
       </Wrapper>
       <Footer />

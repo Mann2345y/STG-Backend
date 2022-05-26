@@ -39,6 +39,9 @@ const LowerNav = ({ openSearch, closeSearch }) => {
             <Link to="/products/page/1">
               <h4 className={styles.link}>Products</h4>
             </Link>
+            <Link to="/trialroom">
+              <h4 className={styles.link}>Trial Room</h4>
+            </Link>
             <h4 className={styles.link}>About </h4>
             <h4 className={styles.link}>Contacts</h4>
           </div>

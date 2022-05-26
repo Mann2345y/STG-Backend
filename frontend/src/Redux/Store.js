@@ -4,6 +4,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import {
   allProductsReducer,
   singleProductReducer,
+  totalProductsReducer,
 } from "./reducers/productsReducers";
 import { allUsersReducer, loggedUserReducer } from "./reducers/userReducers";
 import { cartReducer } from "../Redux/reducers/cartReducers";
@@ -22,6 +23,7 @@ const reducer = combineReducers({
   orderHistory: orderHistoryReducer,
   wishlist: wishlistReducer,
   groupcart: groupcartReducer,
+  totalProducts: totalProductsReducer,
 });
 
 const loggedUserFromStorage = localStorage.getItem("loggedUser")

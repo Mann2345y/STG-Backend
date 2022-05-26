@@ -11,6 +11,7 @@ export const imagepaths = [
       dress2: "/images/trialroom/dress2.png",
       dress3: "/images/trialroom/dress3.png",
       dress4: "/images/trialroom/dress4.png",
+      dress5: "/images/trialroom/dress5.png",
     },
   },
   {
@@ -23,6 +24,8 @@ export const imagepaths = [
       result6: "/images/trialroom/result6.jpg",
       result7: "/images/trialroom/result7.jpg",
       result8: "/images/trialroom/result8.jpg",
+      result9: "/images/trialroom/result9.jpg",
+      result10: "/images/trialroom/result10.jpg",
     },
   },
 ];

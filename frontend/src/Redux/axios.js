@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "https://stgstore.herokuapp.com";
+const baseURL = "http://localhost:5000";
 let headers = {};
 const user = JSON.parse(localStorage.getItem("loggedUser"));
 if (localStorage.getItem("loggedUser")) {

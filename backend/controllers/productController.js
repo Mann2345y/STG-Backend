@@ -18,7 +18,10 @@ const getProducts = asyncHandler(async (req, res) => {
     .skip(pageSize * (page - 1));
   res.send({ products, page, pages: Math.ceil(count / pageSize) });
 });
-
+export const getAllProducts = asyncHandler(async (req, res) => {
+  const products = await Product.find({});
+  res.status(200).json(products);
+});
 const getProductById = asyncHandler(async (req, res) => {
   const product = await Product.findById(req.params.id);
   if (product) {
@@ -30,7 +33,8 @@ const getProductById = asyncHandler(async (req, res) => {
 });
 
 const createProduct = asyncHandler(async (req, res) => {
-  const { name, brand, gender, category, countInStock, price } = req.body;
+  const { name, brand, gender, category, countInStock, price, image } =
+    req.body;
   const productExists = await Product.findOne({ name, brand });
   if (productExists) {
     res.status(404);
@@ -43,6 +47,7 @@ const createProduct = asyncHandler(async (req, res) => {
       category,
       countInStock,
       price,
+      image,
     });
     const createdProduct = await newProduct.save();
     res.status(201).json(createdProduct);

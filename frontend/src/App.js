@@ -10,7 +10,10 @@ import MobileProfile from "./Pages/MobileProfile";
 import { Routes, Route } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { useDispatch } from "react-redux";
-import { getAllProducts } from "./Redux/actions/productsActions";
+import {
+  getAllProducts,
+  getTotalProducts,
+} from "./Redux/actions/productsActions";
 import ScrollToTop from "./scrollToTop";
 import { getCartItems } from "./Redux/actions/cartActions";
 import { getAddresses } from "./Redux/actions/addressActions";
@@ -28,6 +31,7 @@ function App() {
   const user = JSON.parse(localStorage.getItem("loggedUser"));
   useEffect(() => {
     dispatch(getAllProducts());
+    dispatch(getTotalProducts());
     if (user) {
       dispatch(getCartItems(user.id));
       dispatch(getAddresses(user.id));
