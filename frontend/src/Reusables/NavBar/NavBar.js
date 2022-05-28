@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   position: sticky;
   top: 0;
   background: white;
-  z-index: 2;
+  z-index: 10;
   @media (max-width: 768px) {
     height: 100px;
   }
