@@ -11,18 +11,21 @@
 .icons {
   height: 100%;
   display: flex;
+  width: 350px;
+  justify-content: space-between;
   /* margin-right: 25px; */
 }
 .iconWrapper {
   height: 100%;
-  width: 100px;
+  width: fit-content;
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease-in;
+  text-align: center;
 }
 .loginWrapper {
   height: 100%;
@@ -30,7 +33,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
 }
 .iconText {
   transition: all 0.2s ease-in;
@@ -48,13 +51,16 @@
   font-size: 35px;
   margin-bottom: 5px;
 }
+.dropdown {
+  width: 100px;
+}
 .hoverBox {
   height: 100px;
   width: 100%;
   background: #ff4433;
   position: absolute;
   top: 85%;
-  left: 34%;
+  left: 0;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .innerHoverBox {

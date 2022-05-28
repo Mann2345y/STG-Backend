@@ -90,12 +90,12 @@ const MobileNav = ({ openmenu, closeMenuHandler }) => {
             </Link>
           </div>
           <div className={styles.link}>
-            <Link to="/">
+            <Link to="/about">
               <h2>About Us</h2>
             </Link>
           </div>
           <div className={styles.link}>
-            <Link to="/">
+            <Link to="/contacts">
               <h2>Contact Us</h2>
             </Link>
           </div>
