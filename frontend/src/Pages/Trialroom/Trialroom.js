@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { AiFillCaretDown } from "react-icons/ai";
 import NavBar from "../../Reusables/NavBar/NavBar";
@@ -6,8 +6,7 @@ import Footer from "../../Reusables/Footer/Footer";
 import { imagepaths } from "./imagepaths";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { addCartItem } from "../../Redux/actions/cartActions";
-
+import Loader from "../../Reusables/Loader";
 const Wrapper = styled.div`
   height: 600px;
   width: 85%;
@@ -19,7 +18,6 @@ const Wrapper = styled.div`
 const FlexBlock = styled.div`
   height: 100%;
   width: 33.33%;
-  border: 1px solid black;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -79,7 +77,7 @@ const ImageBlock = styled.div`
 `;
 const ResetButton = styled.div`
   height: 40px;
-  width: 200px;
+  width: 150px;
   border: 2px solid #ff4433;
   display: flex;
   justify-content: center;
@@ -100,6 +98,11 @@ const Image = styled.div`
   background-size: contain;
   background-position: center center;
 `;
+const ButtonsWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
 const Trialroom = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -114,8 +117,9 @@ const Trialroom = () => {
   const [modelname, setModelname] = useState("");
   const [resultimage, setResultimage] = useState("");
   const [currentproduct, setCurrentproduct] = useState(null);
-
-  useEffect(() => {
+  const [loading, setLoading] = useState();
+  const tryonRef = useRef();
+  const tryonFunc = () => {
     if (dressimage.includes("dress1") && modelimage.includes("model1")) {
       setResultimage(imagepaths[2].results.result1);
     }
@@ -146,15 +150,23 @@ const Trialroom = () => {
     if (dressimage.includes("dress5") && modelimage.includes("model2")) {
       setResultimage(imagepaths[2].results.result10);
     }
-  }, [dressimage, modelimage]);
-
+  };
+  tryonRef.current = tryonFunc;
+  const clickHandler = () => {
+    tryonRef.current();
+  };
   useEffect(() => {
     if (products.length > 0) {
       const product = products.find((item) => item.image === dressimage);
       setCurrentproduct(product);
-      console.log(currentproduct);
     }
   }, [dressimage]);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 400);
+  }, [resultimage]);
 
   const navigatehandler = () => {
     navigate(`/singleproduct/${currentproduct._id}`);
@@ -234,16 +246,28 @@ const Trialroom = () => {
         </FlexBlock>
         <FlexBlock>
           <h3 style={{ marginTop: "43px" }}>Results</h3>
-          <ImageBlock>
-            {dressimage !== "" && modelimage !== "" ? (
-              <Image path={resultimage}></Image>
-            ) : (
-              <h3> No Image Selected</h3>
-            )}
-          </ImageBlock>
-          <ResetButton onClick={() => navigatehandler()}>
-            <h3>Check Product</h3>
-          </ResetButton>
+
+          {!loading ? (
+            <>
+              <ImageBlock>
+                {dressimage !== "" && modelimage !== "" ? (
+                  <Image path={resultimage}></Image>
+                ) : (
+                  <h3> No Image Selected</h3>
+                )}
+              </ImageBlock>
+            </>
+          ) : (
+            <Loader></Loader>
+          )}
+          <ButtonsWrapper>
+            <ResetButton onClick={() => navigatehandler()}>
+              <h4>Check Product</h4>
+            </ResetButton>
+            <ResetButton onClick={() => clickHandler()}>
+              <h4>Try - On</h4>
+            </ResetButton>
+          </ButtonsWrapper>
         </FlexBlock>
       </Wrapper>
       <Footer />

@@ -23,6 +23,8 @@ import {
   getGroupCarts,
   getGroupCartsUserIsIn,
 } from "./Redux/actions/groupcartActions";
+import About from "./Pages/About";
+import Contacts from "./Pages/Contacts";
 
 function App() {
   const dispatch = useDispatch();
@@ -70,6 +72,8 @@ function App() {
             element={<AllProducts />}
           />
           <Route path="/trialroom" element={<Trialroom />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contacts" element={<Contacts />} />
         </Routes>
       </ScrollToTop>
     </AnimatePresence>

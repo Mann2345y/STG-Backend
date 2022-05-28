@@ -19,7 +19,8 @@ body {
 h1,
 h2,
 h3 {
-  font-family: "Comfortaa", cursive;
+  font-family: "Poiret One", sans-serif;
+  letter-spacing: 2px;
   font-weight: 700;
 }
 h4,

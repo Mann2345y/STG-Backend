@@ -13,7 +13,7 @@ import { removeAddress } from "../../../Redux/actions/addressActions";
 import { addAddressInCart } from "../../../Redux/actions/cartActions";
 
 const AddressTab = ({ setSelectedAdd }) => {
-  const { loading, error, addresses } = useSelector((state) => state.addresses);
+  const { error, addresses } = useSelector((state) => state.addresses);
   const user = JSON.parse(localStorage.getItem("loggedUser"));
   const [toggleEdit, setToggleEdit] = useState(false);
   const [item, setItem] = useState();
@@ -21,9 +21,7 @@ const AddressTab = ({ setSelectedAdd }) => {
 
   return (
     <div className={styles.wrapper}>
-      {loading ? (
-        <Loader></Loader>
-      ) : error ? (
+      {error ? (
         <Message>{error}</Message>
       ) : addresses.length > 0 ? (
         <>

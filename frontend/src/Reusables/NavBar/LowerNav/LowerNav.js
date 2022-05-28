@@ -42,8 +42,12 @@ const LowerNav = ({ openSearch, closeSearch }) => {
             <Link to="/trialroom">
               <h4 className={styles.link}>Trial Room</h4>
             </Link>
-            <h4 className={styles.link}>About </h4>
-            <h4 className={styles.link}>Contacts</h4>
+            <Link to="/about">
+              <h4 className={styles.link}>About</h4>
+            </Link>
+            <Link to="/contacts">
+              <h4 className={styles.link}>Contacts</h4>
+            </Link>
           </div>
           <SearchWrapper open={openSearch}>
             <input

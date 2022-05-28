@@ -33,8 +33,8 @@ const NotFoundButtons = styled.div`
   margin-top: 50px;
 `;
 
-const CartItems = ({ addressTabHandler }) => {
-  const { loading, error, cartItems } = useSelector((state) => state.cart);
+const CartItems = () => {
+  const { error, cartItems } = useSelector((state) => state.cart);
   const [cartItemsState, setCartItemsState] = useState(cartItems);
   const [width, setWidth] = useState();
   let user = JSON.parse(localStorage.getItem("loggedUser"));
@@ -70,11 +70,7 @@ const CartItems = ({ addressTabHandler }) => {
   }, [cartItems, window.innerWidth]);
   return (
     <div className={styles.wrapper}>
-      {loading ? (
-        <div className={styles.notFoundWrapper}>
-          <Loader></Loader>
-        </div>
-      ) : error ? (
+      {error ? (
         <div className={styles.notFoundWrapper}>
           <Message>{error}</Message>
         </div>

@@ -6,6 +6,7 @@ import Buttons from "../../Reusables/Buttons";
 import { BsEmojiFrown as Icon } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Loader from "../../Reusables/Loader";
 
 const Wrapper = styled.div`
   height: 85%;
@@ -45,12 +46,19 @@ const NotFoundButtons = styled.div`
   margin-top: 50px;
 `;
 const ItemsAddress = ({ placeorderHandler }) => {
-  const { cartItems } = useSelector((state) => state.cart);
+  const { loading: cartLoading, cartItems } = useSelector(
+    (state) => state.cart
+  );
+  const { loading: addressLoading } = useSelector((state) => state.addresses);
   const navigate = useNavigate();
 
   return (
     <>
-      {cartItems.length > 0 && (
+      {cartLoading || addressLoading ? (
+        <Wrapper>
+          <Loader></Loader>
+        </Wrapper>
+      ) : cartItems.length > 0 ? (
         <>
           <Wrapper>
             <CartItems />
@@ -66,8 +74,7 @@ const ItemsAddress = ({ placeorderHandler }) => {
             </Buttons>
           </ButtonsWrapper>
         </>
-      )}
-      {cartItems.length <= 0 && (
+      ) : cartItems.length <= 0 ? (
         <>
           <NotFoundWrapper>
             <Icon size={140} />
@@ -82,6 +89,8 @@ const ItemsAddress = ({ placeorderHandler }) => {
             </NotFoundButtons>
           </NotFoundWrapper>
         </>
+      ) : (
+        <></>
       )}
     </>
   );
