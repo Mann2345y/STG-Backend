@@ -2,7 +2,7 @@
   padding: 20px;
   position: absolute;
   width: fit-content;
-  left: 0;
+  left: 50px;
   background: white;
   transition: all 0.2s ease-in;
 }

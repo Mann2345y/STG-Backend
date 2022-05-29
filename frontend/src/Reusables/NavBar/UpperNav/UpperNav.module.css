@@ -11,7 +11,7 @@
 .icons {
   height: 100%;
   display: flex;
-  width: 350px;
+  width: 300px;
   justify-content: space-between;
   /* margin-right: 25px; */
 }
@@ -51,16 +51,16 @@
   font-size: 35px;
   margin-bottom: 5px;
 }
-.dropdown {
+/* .dropdown {
   width: 100px;
-}
+} */
 .hoverBox {
   height: 100px;
-  width: 100%;
+  width: 100px;
   background: #ff4433;
   position: absolute;
-  top: 85%;
-  left: 0;
+  top: 90%;
+  left: -15px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .innerHoverBox {

@@ -41,7 +41,7 @@ const ProductSlider = () => {
     <Container>
       <Header>
         <h1>Latest Products</h1>
-        <Buttons clickHandler={() => navigate("/products")}>
+        <Buttons clickHandler={() => navigate("/products/page/1")}>
           <h2>View All</h2>
         </Buttons>
       </Header>

@@ -106,7 +106,7 @@ const FeatureText = styled.div`
   text-align: center;
   h2 {
     font-family: "Poiret One", sans-serif;
-    margin-top: 15px;
+    margin-top: 40px;
     margin-bottom: 15px;
   }
 `;
@@ -149,10 +149,7 @@ const About = () => {
           </FeatureIconOuterWrapper>
           <FeatureText>
             <h2>Good UI</h2>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim,
-              nulla.
-            </p>
+            <p>A very clean, minimal and robust UI.</p>
           </FeatureText>
         </Feature>
         <Feature>
@@ -171,10 +168,7 @@ const About = () => {
           </FeatureIconOuterWrapper>
           <FeatureText>
             <h2>Group Cart</h2>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim,
-              nulla.
-            </p>
+            <p>Share your carts among your peers, in the blink of an eye</p>
           </FeatureText>
         </Feature>
         <Feature>
@@ -193,10 +187,7 @@ const About = () => {
           </FeatureIconOuterWrapper>
           <FeatureText>
             <h2>Virtual Try - On</h2>
-            <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim,
-              nulla.
-            </p>
+            <p>Try a product on multiple models, to judge it better.</p>
           </FeatureText>
         </Feature>
       </FeatureBlock>
